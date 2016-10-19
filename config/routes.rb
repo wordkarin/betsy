@@ -2,17 +2,17 @@ Rails.application.routes.draw do
 
   resources :merchants, except: [:destroy] do
 	   resources :products, only: [:new, :create, :index]
-	#orders where merchant id (come up with a non-restful route for this)
   end
+  #add non-restful route orders where merchant id
 
 
-  resources :products, except: [:new, :create] do
+  resources :products, except: [:new, :create, :destroy] do
   	resources :reviews, except: [:update, :destroy, :edit]
   end
   patch 'products/:id/retired', to: 'products#retired', as: 'product_retired'
 
 
-  resources :categories, except: [:destroy, :edit, :update] 
+  resources :categories, except: [:destroy, :edit, :update]
 
 
   resources :orders, except: [:destroy]
