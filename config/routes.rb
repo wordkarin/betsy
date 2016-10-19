@@ -1,4 +1,35 @@
 Rails.application.routes.draw do
+
+  resources :merchants, except: [:destroy] do
+	   resources :products, only: [:new, :create, :index]
+	#orders where merchant id (come up with a non-restful route for this)
+  end
+
+
+  resources :products, except: [:new, :create] do
+  	resources :reviews, except: [:update, :destroy, :edit]
+  end
+  patch 'products/:id/retired', to: 'products#retired', as: 'product_retired'
+
+
+  resources :categories, except: [:destroy, :edit, :update] 
+
+
+  resources :orders, except: [:destroy]
+  patch 'orders/:id/completed', to: 'orders#completed', as: 'order_completed'
+  patch 'orders/:id/cancelled', to: 'orders#cancelled', as: 'order_cancelled'
+  patch 'orders/:id/paid', to: 'orders#paid', as: 'order_paid'
+
+
+  # RELATIONSHIP TABLE ROUTES
+  resources :order_items, except: [:index]
+  patch 'order_items/:id/shipped', to: 'order_items#shipped', as: 'order_items_shipped'
+
+
+  resources :product_categories, only: [:create, :destroy]
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
