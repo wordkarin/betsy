@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :categories, except: [:destroy, :edit, :update]
 
 
-  resources :orders, except: [:destroy]
+  resources :orders, except: [:destroy, :index, :new]
   patch 'orders/:id/completed', to: 'orders#completed', as: 'order_completed'
   patch 'orders/:id/cancelled', to: 'orders#cancelled', as: 'order_cancelled'
   patch 'orders/:id/paid', to: 'orders#paid', as: 'order_paid'
