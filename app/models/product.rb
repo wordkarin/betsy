@@ -12,6 +12,6 @@ class Product < ActiveRecord::Base
 
   validates :price, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
-  # I think that we should make sure that a product has at least one category? We can discuss. 
-  validates :categories, :length => { :minimum => 1 }
+  # I think that we should make sure that a product has at least one category? We can discuss.
+  # validates :categories, :length => { :minimum => 1 }
 end

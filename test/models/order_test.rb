@@ -5,35 +5,38 @@ class OrderTest < ActiveSupport::TestCase
     assert products(:one).valid?
    end
 
-  test "Cannot create a order without a status" do
+  test "cannot create a order without a status" do
     order = Order.new(name: "Penny")
     assert_not order.valid?
   end
 
-  test "Cannot create a order without an incorrect status" do
+  test "cannot create a order without an incorrect status" do
     order = Order.new(status: "Penny")
     assert_not order.valid?
   end
 
-  test "Cannot change an order's status to an incorrect value" do
+  test "cannot change an order's status to an incorrect value" do
     order = orders(:one)
     order.status = "Penny"
-    order.save
-    assert order.valid?
+    assert_not order.valid?
   end
 
-  test "Order should return correct number of products" do
+  test "order should return correct number of products" do
     order = orders(:one)
     assert_respond_to(order, :products)
 
     assert_equal(order.products.length, 2)
   end
 
-  test "Order cannot be created without an order item" do
+  test "order cannot be created without an order item" do
     test_order = orders(:one)
     assert_respond_to(test_order, :order_items)
-    test_order.order_items = nil
+    test_order.order_items.each do | order |
+      OrderItem.destroy(order.id)
+    end
 
+    # test_order.order_items
+    test_order.reload
     assert_not test_order.valid?
   end
 
