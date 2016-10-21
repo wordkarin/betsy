@@ -15,18 +15,9 @@ one:
 
 two:
   name: B. Customer
-<<<<<<< HEAD
   email: person_two@email.com
   mailing_address: 98765 NW 56th Street, Seattle, WA 98107
   cc_last_4: 1234
   cc_expire: <%= Date.new(2017, 12, 31) %>
   purchase_time: <%= DateTime.now %>
   status: paid
-=======
-  email: female@email.com
-  mailing_address: 1234 NW 56th Street, Seattle, WA 98107
-  cc_last_4: 5678
-  cc_expire: <%= Date.new(2017, 11, 30) %>
-  purchase_time: <%= DateTime.now %>
-  status: pending
->>>>>>> master
