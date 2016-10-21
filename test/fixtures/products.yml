@@ -5,6 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  id: 1
   name: Hot Toddy
   price: 1200
   stock_quantity: 1
@@ -13,6 +14,7 @@ one:
   merchant: one
   # apparently, I can associate them by name with the active record model name.
 two:
+  id: 2
   name: Chocolate Covered Strawberries
   price: 849
   stock_quantity: 2
