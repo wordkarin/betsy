@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'main#index'
+
   resources :merchants, except: [:destroy] do
 	   resources :products, only: [:new, :create, :index]
   end
