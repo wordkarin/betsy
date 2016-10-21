@@ -35,7 +35,6 @@ class OrderTest < ActiveSupport::TestCase
       OrderItem.destroy(order.id)
     end
 
-    # test_order.order_items
     test_order.reload
     assert_not test_order.valid?
   end
