@@ -12,3 +12,12 @@ one:
   cc_expire: <%= Date.new(2017, 12, 31) %>
   purchase_time: <%= DateTime.now %>
   status: paid
+
+two:
+  name: B. Customer
+  email: person_two@email.com
+  mailing_address: 98765 NW 56th Street, Seattle, WA 98107
+  cc_last_4: 1234
+  cc_expire: <%= Date.new(2017, 12, 31) %>
+  purchase_time: <%= DateTime.now %>
+  status: paid

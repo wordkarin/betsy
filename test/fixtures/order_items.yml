@@ -15,3 +15,9 @@ two_true:
   product: two
   quantity: 2
   shipping_status: true
+
+three_true:
+  order: two
+  product: one
+  quantity: 1
+  shipping_status: true
