@@ -4,8 +4,14 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
+one:
+  order: one
+  product: one
+  quantity: 1
+  shipping_status: false
 #
-two: {}
-#  column: value
+two_true:
+  order: one
+  product: two
+  quantity: 2
+  shipping_status: true

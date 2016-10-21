@@ -4,8 +4,11 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  name: A. Customer
+  email: person@email.com
+  mailing_address: 1234 NW 56th Street, Seattle, WA 98107
+  cc_last_4: 1234
+  cc_expire: <%= Date.new(2017, 12, 31) %>
+  purchase_time: <%= DateTime.now %>
+  status: paid
