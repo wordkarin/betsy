@@ -7,7 +7,7 @@ class OrderItemTest < ActiveSupport::TestCase
     assert_not order_item.valid?
   end
 
-  # I feel that making sure that the OrderItem is associated with a valid product_id and order_id. I think it might be helpful to talk about if this is useful. 
+  # I feel that making sure that the OrderItem is associated with a valid product_id and order_id. I think it might be helpful to talk about if this is useful.
   test "Must belong to a valid product" do
     order_item = OrderItem.new(product_id: 1, order_id: 1, quantity: 2)
     order_item2 = OrderItem.new(product_id: 4, order_id: 1, quantity: 2)
@@ -22,17 +22,17 @@ class OrderItemTest < ActiveSupport::TestCase
     assert_not order_item.valid?
   end
 
-  # test "Must belong to a valid order" do
-  #   order = Order.new(id: 4)
-  #   order.save
-  #   # may need to include user_id when combining tests, but here it is said to be invalid
-  #   order_item = OrderItem.new(product_id: 1, order_id: 4, quantity: 2)
-  #   order_item.save
-  #   order_item2 = OrderItem.new(product_id: 1, order_id: 3, quantity: 2)
-  #   order_item2.save
-  #   assert_includes Order.all, Order.where(order_item.order_id).first
-  #   assert_empty Order.where(order_item2.order_id)
-  # end
+  test "Must belong to a valid order" do
+    order = Order.new(id: 4)
+    order.save
+    # may need to include user_id when combining tests, but here it is said to be invalid
+    order_item = OrderItem.new(product_id: 1, order_id: 4, quantity: 2)
+    order_item.save
+    order_item2 = OrderItem.new(product_id: 1, order_id: 3, quantity: 2)
+    order_item2.save
+    assert_includes Order.all, Order.where(order_item.order_id).first
+    assert_empty Order.where(order_item2.order_id)
+  end
 
   test "Should reject an OrderItem with no quantity" do
     order_item = OrderItem.new(order_id: 1, product_id: 1)

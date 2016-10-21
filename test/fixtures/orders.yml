@@ -5,7 +5,6 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  id: 1
   name: A. Customer
   email: person@email.com
   mailing_address: 1234 NW 56th Street, Seattle, WA 98107
