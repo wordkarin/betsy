@@ -19,28 +19,22 @@ class OrderTest < ActiveSupport::TestCase
     order = orders(:one)
     order.status = "Penny"
     order.save
-    assert_not order.valid?
-  end
-
-# --------------------NOT SURE ABOUT THESE----------------------
-  test "Order should have a relationship with products" do
-    order = orders(:one)
-    assert_respond_to(order, :products)
+    assert order.valid?
   end
 
   test "Order should return correct number of products" do
     order = orders(:one)
+    assert_respond_to(order, :products)
+
     assert_equal(order.products.length, 2)
   end
 
-  test "Cannot create a order without an item" do
-    order = Order.new(status: "pending")
-    assert_not order.valid?
-  end
+  test "Order cannot be created without an order item" do
+    test_order = orders(:one)
+    assert_respond_to(test_order, :order_items)
+    test_order.order_items = nil
 
-  test "Should throw exception if creating order and no order_items are present" do
-    order = orders(:two)
-    assert_throws(Exception,'is empty') {throw Exception if order.products.empty?}
+    assert_not test_order.valid?
   end
 
 end
