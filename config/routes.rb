@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'main#index'
 
   resources :merchants, except: [:destroy] do
-	   resources :products, only: [:new, :create, :index]
+	   resources :products, only: [:new, :create]
   end
   #add non-restful route orders where merchant id
 
