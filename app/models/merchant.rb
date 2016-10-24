@@ -4,7 +4,7 @@ class Merchant < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
-  validates :email, :uid, :provider, presence: true
+  validates :uid, :provider, presence: true
 
   def self.build_from_google(auth_hash)
     user       = Merchant.new
@@ -15,5 +15,5 @@ class Merchant < ActiveRecord::Base
 
     return user
   end
-  
+
 end
