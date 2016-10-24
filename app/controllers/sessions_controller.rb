@@ -14,9 +14,9 @@ class SessionsController < ApplicationController
       # Attempt to create a new user.
       @user = Merchant.build_from_google(auth_hash)
       unless @user.save
-        render login_failure_path
+        render :login_failure
         return
-      end  
+      end
     end
 
     # Save the user ID in the session

@@ -15,7 +15,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_no_difference('Merchant.count') do
       get :create,  {provider: "google"}
     end
-    assert_template login_failure_path
+    assert_template :login_failure
   end
 
   test "Can Create a user" do
