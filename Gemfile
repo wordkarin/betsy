@@ -30,7 +30,8 @@ gem 'omniauth'
 #google as our authentication instead
 gem "omniauth-google-oauth2", "~> 0.2.1"
 
-
+#for 5 star reviews
+gem 'ratyrate'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -7,6 +7,23 @@
 one:
   name: Heart Shaped Everything
   email: sales@hse.org
+  uid: 1234567890qwerty
+  provider: betsoogle
+
 two:
   name: Picnic Ant
   email: sales@picnicant.com
+  uid: qwerty1234567890
+  provider: betsoogle
+
+three:
+  name: Gingham Suppliers
+  email: gingham@suppliers.ya
+  uid: qwerty123456789
+  provider: betsoogle
+
+four:
+  name: Gingham Suppliers
+  email: gingham@suppliers.ya
+  uid: qwerty123456789
+  provider: betsoogle

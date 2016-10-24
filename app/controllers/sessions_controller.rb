@@ -13,13 +13,15 @@ class SessionsController < ApplicationController
       # User doesn't match anything in the DB.
       # Attempt to create a new user.
       @user = Merchant.build_from_google(auth_hash)
-      render :creation_failure unless @user.save
+      unless @user.save
+        render :login_failure
+        return
+      end
     end
 
     # Save the user ID in the session
     session[:user_id] = @user.id
-
-    redirect_to sessions_path
+    redirect_to merchant_path(session[:user_id])
   end
 
   def destroy
