@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
-
+    #TODO REMOVE IF WE AREN'T GOING TO USE THIS!!!!!
   end
 
   def new
@@ -18,6 +18,7 @@ class ReviewsController < ApplicationController
       @product = Product.find(params[:product_id])
     rescue ActiveRecord::RecordNotFound
       render "/errors/product_not_found"
+      return
     end
 
     @review = Review.new(review_params)
