@@ -1,7 +1,12 @@
 class ReviewsController < ApplicationController
   def index
     @reviews_by_product = Review.where(product_id: params[:product_id])
-    @product = @reviews_by_product.first.product
+    product_id = params[:product_id]
+    if @reviews_by_product.first == nil
+      redirect_to product_path(product_id)
+    else
+      @product = @reviews_by_product.first.product
+    end 
   end
 
   def show
