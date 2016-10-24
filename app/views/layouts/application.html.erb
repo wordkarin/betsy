@@ -9,7 +9,7 @@
 <body>
   <header>
     <h1><%= link_to "BasketCase", root_path%></h1>
-    <section class="button">
+    <section>
       <% if session[:user_id] == nil %>
         <%= link_to "Log In", "/auth/google" %>
       <% else %>
