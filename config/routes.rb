@@ -2,8 +2,14 @@ Rails.application.routes.draw do
 
   root 'main#index'
 
+  get "/auth/:provider/callback" => "sessions#create"
+  
+  get "/sessions/login_failure", to: "sessions#login_failure", as: "login_failure"
+  get "/sessions", to: "sessions#index", as: "sessions"
+  delete "/sessions", to: "sessions#destroy"
+
   resources :merchants, except: [:destroy] do
-	   resources :products, only: [:new, :create, :index]
+	   resources :products, only: [:new, :create]
   end
   #add non-restful route orders where merchant id
 

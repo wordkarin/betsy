@@ -27,8 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # For authentication
 gem 'omniauth'
 
-#TODO: We'll probably want something like google as our authentication instead
-# gem 'omniauth-github'
+#google as our authentication instead
+gem "omniauth-google-oauth2", "~> 0.2.1"
 
 
 # Use ActiveModel has_secure_password
