@@ -13,7 +13,15 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    #exception handeling:
+    begin
+      @product = Product.find(params[:product_id])
+    rescue ActiveRecord::RecordNotFound
+      render "/errors/product_not_found"
+    end
+
     @review = Review.new(review_params)
+    @product.reviews << @review
 
     if @review.save
       redirect_to product_reviews_path
