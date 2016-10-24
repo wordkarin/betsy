@@ -8,49 +8,31 @@
     <li><%= link_to category.name, category_path(category.id) %></li>
     <% end %>
   </ul>
-  <%= image_tag("#{@product.photo_url}") %>
+  <%= image_tag(@product.photo_url) %>
 </header>
 
 <article>
   <section>
     <table>
       <tr>
-        <td>
-          Price
-        </td>
-        <td>
-          <%= money_format(@product.price) %>
-        </td>
+        <td>Price</td>
+        <td><%= money_format(@product.price) %></td>
       </tr>
       <tr>
         <% if @product.stock_quantity > 0 %>
-          <td>
-            In Stock:
-          </td>
-          <td>
-            <%= @product.stock_quantity %> Left
-          </td>
+          <td>In Stock:</td>
+          <td><%= @product.stock_quantity %> Available</td>
         <% else %>
-          <td>
-            OUT OF STOCK
-          </td>
+          <td>OUT OF STOCK</td>
         <% end %>
       </tr>
       <tr>
-        <td>
-          Sold by:
-        </td>
-        <td>
-          <%= @product.merchant.name %>
-        </td>
+        <td>Sold by:</td>
+        <td><%= @product.merchant.name %></td>
       </tr>
       <tr>
-        <td>
-          Description:
-        </td>
-        <td>
-          <%= @product.description %>
-        </td>
+        <td>Description:</td>
+        <td><%= @product.description %></td>
       </tr>
     </table>
   </section>

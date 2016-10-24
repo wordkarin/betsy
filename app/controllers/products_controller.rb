@@ -2,16 +2,22 @@ class ProductsController < ApplicationController
   before_action :check_user, only: [:edit, :update, :retired]
 
   def index
-    #shows all the products in the site
-    @products = Product.all
-    # TODO: We're gonna need a view of products within the merchant also.
+    if params[:merchant_id] == nil
+      #shows all the products in the site
+      @products = Product.all
+    elsif params[:merchant_id]
+      # a view of products for a merchant
+      merchant_id = params[:merchant_id]
+      @merchant = Merchant.find(merchant_id)
+      @products = Product.where(merchant_id: merchant_id)
+    end
   end
 
   def show
     current_user
     # This is the individual product page
     @product = Product.find(params[:id])
-    @categories = @product.get_categories
+    @categories = @product.categories
   end
 
   def new

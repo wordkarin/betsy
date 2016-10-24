@@ -1,5 +1,10 @@
 <header>
-  <h1>All the Products</h1>
+  <h1>
+    All the Products
+    <% if @merchant %>
+      for <%= @merchant.name %>
+    <% end %>
+  </h1>
 </header>
 
 <article>
