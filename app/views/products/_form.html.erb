@@ -1,0 +1,17 @@
+<%# @TODO - add validations for model attributes & handle errors  %>
+<table>
+<%= form_for [@merchant, @product], method: http_method do |f| %>
+<tr>
+<td>
+  <%= f.label "Product Name" %>
+  <%= f.text_field :name %>
+</td>
+</tr>
+<!-- Don't forget to add checkboxes for product_categories. -->
+<tr>
+  <td>
+  <%= f.submit "Submit" %>
+</td>
+</tr>
+<% end %>
+</ul>
