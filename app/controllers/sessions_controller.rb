@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
-#TODO  INDEX
   def index
+    @user = Merchant.find(session[:user_id]) # < recalls the value set in a previous request
   end
 
   def create
@@ -15,6 +15,9 @@ class SessionsController < ApplicationController
       @user = Merchant.build_from_google(auth_hash)
       render :creation_failure unless @user.save
     end
+
+    # Save the user ID in the session
+    session[:user_id] = @user.id
 
     redirect_to sessions_path
   end
