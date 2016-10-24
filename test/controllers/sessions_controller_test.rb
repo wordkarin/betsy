@@ -6,14 +6,16 @@ class SessionsControllerTest < ActionController::TestCase
     get :create,  {provider: "google"}
   end
 
-  test "Attempting to log in without email should send you to welcome page" do
-    login_a_user
-    request.env['omniauth.auth'][:info].delete(:email)
+  test "Attempting to log in without email should send you to login failure page" do
+    # login_a_user
+    request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
+    user = request.env['omniauth.auth'][:info]
+    user.email = nil
 
     assert_no_difference('Merchant.count') do
       get :create,  {provider: "google"}
     end
-    assert_redirected_to sessions_path  #IS THIS SUPPOSED TO BE THE SESSIONS PATH OR THE ROOT_PATH?????
+    assert_template login_failure_path
   end
 
   test "Can Create a user" do
@@ -21,7 +23,7 @@ class SessionsControllerTest < ActionController::TestCase
       login_a_user
 
       assert_response :redirect
-      assert_redirected_to sessions_path
+      assert_redirected_to merchant_path(session[:user_id])
       assert_not_nil session[:user_id]
     end
   end
@@ -34,7 +36,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_no_difference('Merchant.count') do
       login_a_user
       assert_response :redirect
-      assert_redirected_to sessions_path
+      assert_redirected_to merchant_path(session[:user_id])
       assert_not_nil session[:user_id]
     end
   end
