@@ -20,4 +20,16 @@ class Product < ActiveRecord::Base
 
 # Same here - I think this is important to have validated (cannot have negative stock.)
   validates :stock_quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  def get_categories
+    product_categories = ProductCategory.where(product_id: self.id)
+    categories = []
+
+    product_categories.each do |item|
+      category_id = item.category_id
+      category = Category.find(category_id)
+      categories << category
+    end
+    return categories
+  end
 end

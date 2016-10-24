@@ -2,7 +2,12 @@
 <header>
   <h1>
     <%= @product.name %>
-    </h1>
+  </h1>
+  <ul>
+    <% @categories.each do |category| %>
+    <li><%= link_to category.name, category_path(category.id) %></li>
+    <% end %>
+  </ul>
   <%= image_tag("#{@product.photo_url}") %>
 </header>
 

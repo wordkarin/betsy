@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
 private
   def current_user
     # Placeholder, this should be replaced with the actual session user, which should be added to the merchant's table if it's not there already.
-    @current_user = Merchant.find(1)
+    @current_user = Merchant.last
   end
 end

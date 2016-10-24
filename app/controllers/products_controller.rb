@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
     current_user
     # This is the individual product page
     @product = Product.find(params[:id])
+    @categories = @product.get_categories
   end
 
   def new
@@ -32,7 +33,7 @@ class ProductsController < ApplicationController
       # redirect to login page.
     else
       @product = @merchant.products.new(product_params)
-    end 
+    end
 
     if @product.save(product_params)
       redirect_to merchant_path(@merchant)
