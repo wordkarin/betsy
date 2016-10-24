@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
     current_user
     @merchant = @current_user
     @product = @merchant.products.new
+    # raise
   end
 
   def create
@@ -29,7 +30,7 @@ class ProductsController < ApplicationController
     @merchant = Merchant.find(params[:merchant_id])
     if @merchant != @current_user
       # display some message and re-route to @current_user's page?
-    elsif @current_user = nil
+    elsif @current_user == nil
       # redirect to login page.
     else
       @product = @merchant.products.new(product_params)
@@ -43,6 +44,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    current_user
     # This is the page where a merchant can edit their own product, will have an authorization to make sure merchant's id matches product's merchant_id
     # TODO: should also have error messages if product is not valid.
   end
