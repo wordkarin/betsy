@@ -1,10 +1,11 @@
 class OrdersController < ApplicationController
 
   def create
-    @params = params
+    @id = params[:id]
     @order = Order.new(order_params(params))
+    @product_id = @order.product.id
     if @order.save
-      redirect_to orders_path
+      redirect_to order_items_path
     # else
     #   # @todo need to add @product_id = id in products#add controller
     #   render product_path(@product_id)

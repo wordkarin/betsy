@@ -3,12 +3,11 @@ require 'test_helper'
 class OrderItemsControllerTest < ActionController::TestCase
 #
 #   # CREATE!!!
-#   test "should create a new OrderItem" do
-#     #Needs to be connected from the product page - from here, all info will be provided. => Product page should redirect to Order item new.
-#
-#     post :create, {order_item: {product_id: products(:three).id, order_id: orders(:three_pending).id, quantity: 1 }}
-#     assert_response :redirect
-#   end
+  test "should create a new OrderItem" do
+    order = orders(:three)
+    post :create, {order_item: {product_id: products(:three_pending).id, order_id: order.id, quantity: 1 }}
+    assert_response :redirect
+  end
 #
 #   test "should create a new order when one doesn't already exist" do
 #     # Create a new order with a new order_item
