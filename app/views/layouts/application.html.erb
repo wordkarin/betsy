@@ -5,17 +5,27 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
 </head>
 <body>
   <header>
-    <h1><%= link_to "BasketCase", root_path%></h1>
     <section>
+      <% if session[:user_id] == nil %>
+        <p><%= "Hello User" %></p>
+      <% else %>
+        <p><%= "Hello, #{ Merchant.find(session[:user_id]).name }" %></p>
+      <% end %>
+
       <% if session[:user_id] == nil %>
         <%= link_to "Log In", "/auth/google" %>
       <% else %>
         <%= link_to "Log Out", sessions_path, method: :delete %>
       <% end %>
+    <p>Sign Up</p>
+    <p>Your Basket</p>
   </section>
+  <h1><%= link_to "BasketCase", root_path%></h1>
+  <h4> - - the go-to site for all things picnic! - -</h4>
   </header>
 
 <%= yield %>

@@ -1,1 +1,34 @@
 @import url('foundation.css');
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab');
+/*@import url('https://fonts.googleapis.com/css?family=Cormorant+SC|Forum|Gruppo|Josefin+Slab|Kameron|Kranky|Nixie+One');*/
+
+/*HEADER*/
+header section{
+  background-color: #5A6070;
+  color: #ECEBE4;
+  font-family: 'Josefin Slab', serif;
+}
+
+header h1 a {
+  font-family: 'Josefin Slab', serif;
+  color: #483C46;
+}
+
+header h1 a:hover {
+  color: #5A6070
+}
+
+h4 {
+  font-family: 'Josefin Slab', serif;
+  color: #565656;
+}
+
+article.categories {
+  border-top: solid #5A6070 1px;
+  border-bottom: solid #5A6070 1px;
+  font-family: 'Josefin Slab', serif;
+}
+
+article.categories ul {
+  list-style-type: none;
+}
