@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
       render :creation_failure unless @user.save
     end
 
-    raise
     redirect_to sessions_path
   end
 
