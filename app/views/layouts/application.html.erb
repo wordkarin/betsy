@@ -13,32 +13,41 @@
       <article class="">
         <section class="small-8 columns">
           <% if session[:user_id] == nil %>
-            <p><%= "Hello User" %></p>
+            <p><%= "Welcome" %></p>
           <% else %>
-            <p><%= "Hello, #{ Merchant.find(session[:user_id]).name }" %></p>
+            <p><%= "Welcome, #{ Merchant.find(session[:user_id]).name }" %></p>
           <% end %>
         </section>
         <section>
-          <p class="small-1 columns">
+          <p class="small-1 center columns">
             <% if session[:user_id] == nil %>
               <%= link_to "Log In", "/auth/google" %>
             <% else %>
               <%= link_to "Log Out", sessions_path, method: :delete %>
             <% end %>
           </p>
-          <p class="small-1 columns">Sign Up</p>
-          <p class="small-2 columns">Your Basket</p>
+          <p class="small-1 center columns">Sign Up</p>
+          <p class="small-2 center columns">Your Basket</p>
         </section>
       </article>
     </div>
     <article class="clear-background">
-      <div class="row center" id="header-title">
-        <h1 class="small-12 columns"><%= link_to "BasketCase", root_path%></h1>
+      <div class="row " id="header-title">
+        <h1 class="small-12 center columns"><%= link_to "BasketCase", root_path%></h1>
       </div>
       <div class="row center" id="header-subtitle">
-        <h4 class="small-12 columns"> - - the go-to site for all things picnic! - -</h4>
+        <h4 class="small-12 center columns"> - - the go-to site for all things picnic! - -</h4>
       </div>
     </article>
+    <nav>
+      <article class="categories">
+        <ul class="row small-up-2 medium-up-4" >
+          <li class="column"><%= link_to "Merchants", merchants_path %></li>
+          <li class="column"><%= link_to "Products", products_path %></li>
+          <li class="column"><%= link_to "Categories", categories_path %></li>
+        </ul>
+      </article>
+    </nav>
   </header>
 
 <%= yield %>

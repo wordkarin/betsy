@@ -26,15 +26,11 @@ article.categories {
   border-top: solid #5A6070 1px;
   border-bottom: solid #5A6070 1px;
   font-family: 'Josefin Slab', serif;
+  padding: .4% 0 0 0;
 }
 
 article.categories ul {
   list-style-type: none;
-}
-
-.column.center {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 article.clear-background {
@@ -49,4 +45,10 @@ div.login-navbar {
 
 p.columns, p {
   margin : 0;
+}
+
+/*MAIN PAGE*/
+img {
+  margin: auto;
+  padding-top: 4%;
 }
