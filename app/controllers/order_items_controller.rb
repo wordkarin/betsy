@@ -1,5 +1,10 @@
 class OrderItemsController < ApplicationController
-#   #
+
+  def create
+
+  end
+
+
 #   def create
 #     @params = params
 #     @order_item = OrderItem.new(order_item_params(params))

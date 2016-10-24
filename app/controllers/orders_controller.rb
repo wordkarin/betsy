@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   def create
     @id = params[:id]
     @order = Order.new(order_params(params))
+    puts "aishdakshdlhagsldjhagsldjhgas #{order.id}"
     @product_id = @order.product.id
     if @order.save
       redirect_to order_items_path
