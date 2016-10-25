@@ -1,23 +1,33 @@
 class OrderItemsController < ApplicationController
 
+  # def create
+  #
+  # end
+
+
   def create
+    @order = Order.find_by(id: params[:order_id].to_i)
+    @order_item = @order.order_items.new #here need params
+    # @order_item.quantity += 1
+    if @order_item.save
+      # SUCCESS # to order page?
+      # redirect_to product_path(SOME PRODUCT ID) #not sure how it finds it
+    else
+      # render # same but with flash message?
+      # NO SUCCESS
+    end
 
+
+    # if Order.where(id: params[:id]).length == 0
+    #   new_order = Order.new # with those params
+    #   new_order.save
+    # end
+
+    # @todo RETURN WITH PARAMS
+
+    # raise
+    # redirect_to product_path(params[:id])
   end
-
-
-#   def create
-#     @params = params
-#     @order_item = OrderItem.new(order_item_params(params))
-#     if Order.where(id: params[:id]).length == 0
-#       new_order = Order.new # with those params
-#       new_order.save
-#     end
-#
-#     # @todo RETURN WITH PARAMS
-#
-#     # raise
-#     # redirect_to product_path(params[:id])
-#   end
 #   #
 #   # # Talk about the routes
 #   # def update
@@ -49,8 +59,9 @@ class OrderItemsController < ApplicationController
 #   #
 #   #
 #   #
-#   private
-#   def order_item_params(params)
-#     params.require(:order_item).permit(:quantity)
-#   end
+  private
+  def order_item_params(params)
+    params.permit!
+    # params.require(:order_item).permit(:quantity)
+  end
 end
