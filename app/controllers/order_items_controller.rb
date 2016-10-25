@@ -1,10 +1,5 @@
 class OrderItemsController < ApplicationController
 
-  # def create
-  #
-  # end
-
-
   def create
     @order = Order.find_by(id: params[:order_id].to_i)
     @order_item = @order.order_items.new #here need params
