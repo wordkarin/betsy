@@ -16,12 +16,13 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id].to_i)
     @order_items = OrderItem.where(order_id = params[:id].to_i)
+
   end
   #
-  # def edit
-  #   @order = Order.find(params[:id].to_i)
-  #   # needs to be able to select the order_item
-  # end
+  def edit
+    # Edit order, is more like, edit the contact information of the user in the cart. This will be called when they go to checkout their order.
+    @order = Order.find(params[:id])
+  end
 
 
   private
