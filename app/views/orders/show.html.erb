@@ -1,3 +1,11 @@
 <h1>This is the show page for order <%= @order.name%></h1>
 
 <p><%= link_to "Edit Order", edit_order_path(params[:id]) %></p>
+
+<p><%= @order.id %></p>
+
+<% @order_items.each do |item| %>
+  <% if @order.id == item.order_id %>
+    <p> Product_id: <%= item.product_id %> Order_id <%= item.order_id %></p>
+  <% end %>
+<% end %>
