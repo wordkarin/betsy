@@ -3,52 +3,62 @@
 /*@import url('https://fonts.googleapis.com/css?family=Cormorant+SC|Forum|Gruppo|Josefin+Slab|Kameron|Kranky|Nixie+One');*/
 
 /*HEADER*/
-header {
+header section.top-bar {
   background-color: #5A6070;
+  margin-bottom: 2%;
 }
 
-header h1 a {
+section.top-bar nav.top-bar-section {
+  font-family: 'Josefin Slab', serif;
+}
+
+ul.menu.top-bar-left, ul.menu.top-bar-right {
+  background-color: transparent;
+  font-family: 'Josefin Slab', serif;
+  color: #ECEBE4;
+  padding: 0 1% 0 1%;
+}
+
+header article h1#header-title a {
   font-family: 'Josefin Slab', serif;
   color: #483C46;
   background-color: transparent;
 }
 
-header h1 a:hover {
-  color: #5A6070
-}
-
-h4 {
+header article h4#header-subtitle {
   font-family: 'Josefin Slab', serif;
-  color: #565656;
+  color: #483C46;
+  background-color: transparent;
 }
 
-article.categories {
-  border-top: solid #5A6070 1px;
-  border-bottom: solid #5A6070 1px;
-  font-family: 'Josefin Slab', serif;
-  padding: .4% 0 0 0;
+header article h1#header-title a:hover {
+  color: #5A6070;
 }
 
-article.categories ul {
-  list-style-type: none;
+header section#category-list article.top-bar-section ul {
+  margin-top: 2%;
+  background-color: #5A6070;
 }
 
-article.clear-background {
-  background-color: white;
-}
-
-div.login-navbar {
-  color: #ECEBE4;
-  font-family: 'Josefin Slab', serif;
-  padding: .3% 0 .3% 2%;
-}
-
-p.columns, p {
-  margin : 0;
+.center {
+  text-align: center;
 }
 
 /*MAIN PAGE*/
 img {
   margin: auto;
   padding-top: 4%;
+}
+
+.page-title {
+  padding-top: 2%;
+  text-align: center;
+  font-family: 'Josefin Slab', serif;
+  color: #5E4E5B;
+}
+
+.product-img {
+  display: block;
+  width: 50%;
+  margin: auto;
 }

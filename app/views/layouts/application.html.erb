@@ -9,45 +9,43 @@
 </head>
 <body>
   <header>
-    <div class="row login-navbar">
-      <article class="">
-        <section class="small-8 columns">
+    <section class="top-bar">
+      <nav class="top-bar-section">
+        <ul class="menu top-bar-left">
           <% if session[:user_id] == nil %>
-            <p><%= "Welcome" %></p>
+            <li><%= "Welcome" %></li>
           <% else %>
-            <p><%= "Welcome, #{ Merchant.find(session[:user_id]).name }" %></p>
+            <li><%= "Welcome, #{ Merchant.find(session[:user_id]).name }"%></li>
           <% end %>
-        </section>
-        <section>
-          <p class="small-1 center columns">
+        </ul>
+        <ul class="menu top-bar-right">
+          <li>
             <% if session[:user_id] == nil %>
               <%= link_to "Log In", "/auth/google" %>
             <% else %>
               <%= link_to "Log Out", sessions_path, method: :delete %>
             <% end %>
-          </p>
-          <p class="small-1 center columns">Sign Up</p>
-          <p class="small-2 center columns">Your Basket</p>
-        </section>
-      </article>
-    </div>
-    <article class="clear-background">
-      <div class="row " id="header-title">
-        <h1 class="small-12 center columns"><%= link_to "BasketCase", root_path%></h1>
-      </div>
-      <div class="row center" id="header-subtitle">
-        <h4 class="small-12 center columns"> - - the go-to site for all things picnic! - -</h4>
-      </div>
+          </li>
+          <li>Sign Up</li>
+          <li>Your Basket</li>
+        </ul>
+      </nav>
+    </section>
+
+    <article class= "row">
+      <h1 class="small-12 center columns" id="header-title"><%= link_to "BasketCase", root_path%></h1>
+      <h4 class="small-12 center columns" id="header-subtitle"> - - the go-to site for all things picnic! - -</h4>
     </article>
-    <nav>
-      <article class="categories">
-        <ul class="row small-up-2 medium-up-4" >
-          <li class="column"><%= link_to "Merchants", merchants_path %></li>
-          <li class="column"><%= link_to "Products", products_path %></li>
-          <li class="column"><%= link_to "Categories", categories_path %></li>
+
+    <section id="category-list" class="row small-up-2">
+      <article class="top-bar-section">
+        <ul class="menu top-bar-left column">
+          <li><%= link_to "Merchants", merchants_path %></li>
+          <li><%= link_to "Products", products_path %></li>
+          <li><%= link_to "Categories", categories_path %></li>
         </ul>
       </article>
-    </nav>
+    </section>
   </header>
 
 <%= yield %>

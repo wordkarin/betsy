@@ -1,14 +1,14 @@
 <!-- TODO: If session[user.id] is not the same as the merchant, should display a buy button (which will add to an existing order, or create a new order.) Otherwise, show a link to edit. -->
 <header>
-  <h1>
+  <h1 class="page-title">
     <%= @product.name %>
   </h1>
   <ul>
     <% @categories.each do |category| %>
-    <li><%= link_to category.name, category_path(category.id) %></li>
+    <li><%= link_to category.name, category_path(category.id)%></li>
     <% end %>
   </ul>
-  <%= image_tag(@product.photo_url) %>
+  <%= image_tag(@product.photo_url, class: "product-img") %>
 </header>
 
 <article>
