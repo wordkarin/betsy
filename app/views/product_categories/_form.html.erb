@@ -10,10 +10,12 @@
 
 <%= form_for @product_category, class: 'add-form', html: {class: 'form'}, url: submit_url,method: http_method do |f| %>
   <section>
-    <% @all_categories.each do | category | %>
-      <%= check_box_tag(:category) %>
-      <%= label_tag(:category, category.name) %>
-    <% end %>
+    <% @all_categories.each do | category | -%>
+      <%= fields_for 'category[]' , category do | category_fields | -%>
+      <%= category.name %>
+      <%= category_fields.check_box :name %>
+      <% end -%>
+    <% end -%>
   </section>
 
   <section>

@@ -3,7 +3,7 @@
 <article class="">
   <section>
     <%= "You are registed under the name: #{@merchant.name} (#{@merchant.email})" %>
-    <%= "through the #{"PROVIDER"} authentication" %>
+    <%= "through #{@merchant.provider} authentication" %>
   </section>
   <section>
     <%= link_to "Add a new product", new_merchant_product_path(@merchant) %>

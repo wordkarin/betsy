@@ -5,6 +5,7 @@ class ProductCategoriesController < ApplicationController
   end
 
   def create
+    @product_category = ProductCategory.new(product_category_params)
     raise
   end
 
@@ -13,12 +14,9 @@ class ProductCategoriesController < ApplicationController
 
   private
 
-  # def product_category_params
-  #   params.require(:product_category).permit(
-  #
-  #   )
-  #
-  # end
+  def product_category_params
+    params.require(:product_category).permit(:category)
+  end
 
 
 end
