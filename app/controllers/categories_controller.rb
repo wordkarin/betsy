@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
     @products_by_category = @category.products
   end
 
-  def new
+  def new  #route here from creating a new product
     @category = Category.new
   end
 
