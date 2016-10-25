@@ -32,12 +32,14 @@ header article h4#header-subtitle {
 }
 
 header article h1#header-title a:hover {
-  color: #5A6070;
+  color: #595959;
 }
 
 header section#category-list article.top-bar-section ul {
   margin-top: 2%;
-  background-color: #5A6070;
+  border-top: #5A6070 solid 1px;
+  border-bottom: #5A6070 solid 1px;
+
 }
 
 .center {
