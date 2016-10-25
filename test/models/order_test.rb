@@ -28,15 +28,16 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal(order.products.length, 2)
   end
 
-  test "order cannot be created without an order item" do
-    test_order = orders(:one)
-    assert_respond_to(test_order, :order_items)
-    test_order.order_items.each do | order |
-      OrderItem.destroy(order.id)
-    end
-
-    test_order.reload
-    assert_not test_order.valid?
-  end
+  # REMOVED BECAUSE NO LONGER VALIDATING ORDER_ITEM
+  # test "order cannot be created without an order item" do
+  #   test_order = orders(:one)
+  #   assert_respond_to(test_order, :order_items)
+  #   test_order.order_items.each do | order |
+  #     OrderItem.destroy(order.id)
+  #   end
+  #
+  #   test_order.reload
+  #   assert_not test_order.valid?
+  # end
 
 end
