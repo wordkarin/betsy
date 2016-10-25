@@ -7,3 +7,5 @@
     <p><%= "#{review.body}" %></p>
   <% end %>
 </article>
+
+<%= link_to "Add a Review", new_product_review_path(params[:product_id]) %>
