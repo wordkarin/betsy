@@ -13,17 +13,19 @@ Rails.application.routes.draw do
   end
   #add non-restful route orders where merchant id
 
-
   resources :products, except: [:new, :create, :destroy] do
   	resources :reviews, except: [:update, :destroy, :edit]
+    resources :orders, only: [:create]
   end
   patch 'products/:id/retired', to: 'products#retired', as: 'product_retired'
 
 
   resources :categories, except: [:destroy, :edit, :update]
 
+  resources :orders, except: [:destroy, :index, :new, :create]
 
-  resources :orders, except: [:destroy, :index, :new]
+  # post 'products/:id/orders', to: 'orders#create'
+
   patch 'orders/:id/completed', to: 'orders#completed', as: 'order_completed'
   patch 'orders/:id/cancelled', to: 'orders#cancelled', as: 'order_cancelled'
   patch 'orders/:id/paid', to: 'orders#paid', as: 'order_paid'

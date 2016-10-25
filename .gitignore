@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 
-.DS-Store
+.DS_Store
 
 /coverage
 
