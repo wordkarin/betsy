@@ -3,7 +3,8 @@ class Order < ActiveRecord::Base
   has_many :products, :through => :order_items
 
   # validates :order_items, presence: true
-  validates :order_items, :length => { :minimum => 1 }
+  # REMOVING ORDER_ITEMS validates or else we have a chicken and egg scenario.
+  # validates :order_items, :length => { :minimum => 1 }
 
 
   validates :status, :presence => true, inclusion: { in: %w(pending paid completed cancelled) }
