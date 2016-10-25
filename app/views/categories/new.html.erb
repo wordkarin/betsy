@@ -1,0 +1,35 @@
+<h1>Add a New Category</h1>
+
+<% if @category.errors.any? %>
+  <ul class="errors">
+    <% @category.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+  <%= form_for @category, class: "", html: {class: 'form'}, url: categories_path, http_method: :post do |f| %>
+  <section>
+    <%= f.label :name, "Category Name" %>
+    <%= f.text_field :name %>
+  </section>
+
+  <section>
+    <%= f.label :description, "Description:" %>
+    <%= f.text_field :description %>
+  </section>
+
+  <section>
+    <%= f.label :photo_url, "Image URL:" %>
+    <%= f.text_field :photo_url %>
+  </section>
+
+  <section>
+    <%= f.submit "Create a Category", :class => 'button' %>
+  </section>
+
+  <% end %>
+
+<h4>Don't want to add a category, <%= link_to "Go Back to All Categories", categories_path %></h4>
