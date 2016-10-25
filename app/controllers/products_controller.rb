@@ -18,6 +18,11 @@ class ProductsController < ApplicationController
     # This is the individual product page
     @product = Product.find(params[:id])
     @categories = @product.categories
+    if @current_user.id == @product.merchant_id
+      @user_page = true
+    else
+      @user_page = false
+    end
   end
 
   def new
