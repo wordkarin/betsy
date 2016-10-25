@@ -8,27 +8,56 @@
   <section>
     <%= link_to "Add a new product", new_merchant_product_path(@merchant) %>
     <%= link_to "Add a new product category", new_category_path %>
-<p>
+    <p>
 
-</p>
+    </p>
   </section>
   <% @merchant.products.each do |product| %>
-    <section>
-      <%= link_to "#{product.name}", product_path(product) %>
-      <%= link_to "Edit", edit_product_path(product) %>
-      <%= link_to "" %>
-    </section>
-<p>
+  <!-- <section>
+    <%= link_to "#{product.name}", product_path(product) %>
+    <%= link_to "Edit", edit_product_path(product) %>
+    <%= link_to "" %>
+  </section>
+  <p>
 
-</p>
+  </p> -->
+  <% product.orders.reverse.each do |order| %>
+  <!-- <section>
+    <%= link_to "Date: #{order.purchase_time.strftime("%Y-%m-%d")} Order##{order.id}: Customer: #{order.name}", order_path(order) %>
+    <%= "Order status: #{order.status}" %>
+  </section>
+  <% end %> -->
+
+
+  <table>
+    <h3><%= link_to "#{product.name}", product_path(product) %>
+    <small><%= link_to "Edit", edit_product_path(product) %></small>
+    <small><%= link_to "" %></small></h3>
+    <p><%= product.price %></p>
+    <tr>
+      <th>Order Date</th>
+      <th>Order Number</th>
+      <th>Customer</th>
+      <th>Order Status</th>
+      <!-- <th>Order Revenue</th> -->
+      <th>Order Details</th>
+    </tr>
     <% product.orders.reverse.each do |order| %>
     <section>
-      <%= link_to "Date: #{order.purchase_time.strftime("%Y-%m-%d")} Order##{order.id}: Customer: #{order.name}", order_path(order) %>
-      <%= "Order status: #{order.status}" %>
+      <tr>
+        <td><%=order.purchase_time.strftime("%Y-%m-%d")%></td>
+        <td><%=order.id%></td>
+        <td><%=order.name%></td>
+        <td><%=order.status%></td>
+        <!-- <td><%= OrderItem.find_by(product_id = product.id, order_id = order.id)%></td> -->
+        <td><%= link_to "View", order_path(order) %></td>
+
+      </tr>
     </section>
     <% end %>
-  <% end %>
+  </table>
 </article>
+<% end %>
 
 <p>
   This is the merchants#show view
