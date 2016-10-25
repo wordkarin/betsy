@@ -7,23 +7,19 @@ class CategoryTest < ActiveSupport::TestCase
   end
 
   test "A merchant can create a category with a name and image" do
-    login_a_user 
 
   end
 
   test "A merchant cannot create a category without a name" do
-    user = User.new(photo_url: "tst.gmail.com")
-    assert_not user.valid?
+
   end
 
   test "A merchant cannot create a category without an image" do
-    user = User.new(name: "Frank")
-    assert_not user.valid?
+
   end
 
   test "A user cannot create a category with a name and image" do
-    user = User.new(name: "Frank", photo_url: "tst.gmail.com")
-    assert_not user.valid?
+
   end
 
   test "redirects you to the category_not_found page if category doesn't exist" do

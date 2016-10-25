@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
     @products_by_category = @category.products
   end
 
+  #TODO NEW AND CREATE SHOULD BE ONLY AUTHOURIZED FOR VIEW BY MERCHANTS
   def new  #route here from creating a new product
     @category = Category.new
   end
