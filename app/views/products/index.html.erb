@@ -1,13 +1,13 @@
-<header>
-  <h1 class="page-title">
-    All the Products
-    <% if @merchant %>
-      for <%= @merchant.name %>
-    <% end %>
-  </h1>
-</header>
-
 <article>
+  <header>
+    <h1 class="page-title">
+      All the Products
+      <% if @merchant %>
+        for <%= @merchant.name %>
+      <% end %>
+    </h1>
+  </header>
+
   <section>
     <table>
       <% @products.each do |product| %>

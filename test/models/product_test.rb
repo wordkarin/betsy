@@ -64,12 +64,13 @@ class ProductTest < ActiveSupport::TestCase
     assert_respond_to(prod, :categories)
   end
 
-  test "product should have at least one category" do
-    #This product doesn't have any categories through product_categories, because I've just created it here. It's not valid because validations says we should have at least one product_category.
-    prod = Product.new(name:"a valid name", merchant_id: merchants(:one), price: 1200, stock_quantity: 1)
-
-    assert_not prod.valid?
-  end
+  # This test is commented out because we've removed the validation for at least one category. 
+  # test "product should have at least one category" do
+  #   #This product doesn't have any categories through product_categories, because I've just created it here. It's not valid because validations says we should have at least one product_category.
+  #   prod = Product.new(name:"a valid name", merchant_id: merchants(:one), price: 1200, stock_quantity: 1)
+  #
+  #   assert_not prod.valid?
+  # end
 
   test "product cannot have invalid stock_quantity" do
     product = products(:one)
