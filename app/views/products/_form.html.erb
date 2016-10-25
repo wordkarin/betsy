@@ -41,18 +41,6 @@
   </td>
 </tr>
 <tr>
-  <!-- TODO: I'm not sure where you'd want to get the list of all categories available - this is probably not a good way to do it. -->
-  <!-- TODO: I'm also not sure how to translate this into the categories that a product belongs to (via product_categories). -->
-  <!-- TODO: Something like this: http://stackoverflow.com/questions/25095921/rails-how-to-send-a-form-that-is-inside-another-form -->
-  <%= f.label "Categories" %>
-  <%= f.fields_for :categories do |h| %><br/>
-    <% Category.all.each do |category| %>
-      <%= h.check_box category.name %>
-      <%= h.label category.name, category.name %>
-    <% end %>
-  <% end %>
-</tr>
-<tr>
   <td>
   <%= f.submit "Submit" %>
 </td>
