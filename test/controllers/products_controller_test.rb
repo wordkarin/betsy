@@ -42,5 +42,66 @@ class ProductsControllerTest < ActionController::TestCase
     end
   end
 
+  test "products#show displays an error page if product does not exist" do
+    skip
+    # TODO
+  end
+
+  test "products#new displays the new form for logged in merchant" do
+    #fake a user is logged in.
+    session[:user_id] = merchants(:one).id
+
+    get :new, {merchant_id: session[:user_id]}
+
+    assert_response :success
+    assert_template :new
+  end
+
+  test "products#new is only visible to logged in users" do
+    # Need a real "current_user" method to run this test.
+    skip
+    # Ensure there is no logged in user.
+    session.delete(:user_id)
+
+    get :new, {merchant_id: merchants(:one).id}
+    assert_response :redirect
+    assert_template 'sessions/login_failure'
+  end
+
+  test "can create a valid product (if logged in)" do
+    #skipping for now, because need product_categories controller in order to get a new product created 
+    skip
+    #faking logged in
+    session[:user_id] = merchants(:one).id
+
+    product_params = { product:
+      { name: "Jammy Jams",
+        price: 349,
+        categories: [categories(:one)],
+        stock_quantity: 1,
+        photo_url: 'grapes.jpg',
+        description: "They make the best jam."
+      }
+    }
+    assert_difference('Product.count', 1) do
+      post :create, product_params
+    end
+
+    post :create, {merchant_id: session[:user_id], product: product_params}
+
+    assert_redirected_to merchant_path(assigns(:merchant))
+  end
+
+  test "cannot create a new product if not logged in" do
+    # Need a real "current_user" method to run this test.
+    skip
+    # Ensure there is no logged in user.
+    session.delete(:user_id)
+
+    post :create, {merchant_id: merchants(:one).id}
+    assert_response :redirect
+    assert_template 'sessions/login_failure'
+  end
+
   # Need tests for new/create/edit(not done with code yet)
 end

@@ -25,9 +25,14 @@ class ProductsController < ApplicationController
     # Within the context of a merchant, a form to create a new product.
     # If you're not logged in (e.g. @current_user = nil, display a login prompt)
     current_user
-    @merchant = @current_user
-    @product = @merchant.products.new
-    # raise
+    # TODO: Need to add in checking if @current_user is nil (not logged in)
+    if @current_user == nil
+      redirect_to login_failure_path
+    else
+      @merchant = @current_user
+      @product = @merchant.products.new
+      @product.categories.build
+    end
   end
 
   def create
@@ -45,12 +50,13 @@ class ProductsController < ApplicationController
     if @product.save(product_params)
       redirect_to merchant_path(@merchant)
     else
-      render :edit
+      render :new
     end
   end
 
   def edit
     current_user
+
     # This is the page where a merchant can edit their own product, will have an authorization to make sure merchant's id matches product's merchant_id
     # TODO: should also have error messages if product is not valid.
   end
@@ -66,7 +72,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :price, :stock_quantity, :description, :photo_url)
+    params.require(:product).permit(:name, :price, :stock_quantity, :description, :photo_url, product_categories: [:categories])
   end
   private
 

@@ -11,12 +11,47 @@
 <table>
 <%= form_for [@merchant, @product], method: http_method do |f| %>
 <tr>
-<td>
-  <%= f.label "Product Name" %>
-  <%= f.text_field :name %>
-</td>
+  <td>
+    <%= f.label "Product Name" %>
+    <%= f.text_field :name %>
+  </td>
 </tr>
-<!-- Don't forget to add checkboxes for product_categories. -->
+<tr>
+  <td>
+    <%= f.label "Product Description" %>
+    <%= f.text_field :description %>
+  </td>
+</tr>
+<tr>
+  <td>
+    <%= f.label "Photo (URL)" %>
+    <%= f.text_field :photo_url %>
+  </td>
+</tr>
+<tr>
+  <td>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </td>
+</tr>
+<tr>
+  <td>
+    <%= f.label "Quantity Available" %>
+    <%= f.text_field :stock_quantity %>
+  </td>
+</tr>
+<tr>
+  <!-- TODO: I'm not sure where you'd want to get the list of all categories available - this is probably not a good way to do it. -->
+  <!-- TODO: I'm also not sure how to translate this into the categories that a product belongs to (via product_categories). -->
+  <!-- TODO: Something like this: http://stackoverflow.com/questions/25095921/rails-how-to-send-a-form-that-is-inside-another-form -->
+  <%= f.label "Categories" %>
+  <%= f.fields_for :categories do |h| %><br/>
+    <% Category.all.each do |category| %>
+      <%= h.check_box category.name %>
+      <%= h.label category.name, category.name %>
+    <% end %>
+  <% end %>
+</tr>
 <tr>
   <td>
   <%= f.submit "Submit" %>

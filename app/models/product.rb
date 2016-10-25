@@ -6,6 +6,10 @@ class Product < ActiveRecord::Base
   has_many :orders, :through => :order_items
 
   has_many :product_categories
+
+  # The way to do a nested form (this might just not be working because there's no create product_categories action)
+  accepts_nested_attributes_for :product_categories
+
   has_many :categories, :through => :product_categories
 
   validates :name, presence: true, uniqueness: true
