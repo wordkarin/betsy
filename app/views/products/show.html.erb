@@ -43,7 +43,7 @@
       </ul>
     <% else %>
       <ul>
-        <li><%= link_to "Review", new_product_review_path(:product_id) %></li>
+        <li><%= link_to "Review", new_product_review_path(params[:id]) %></li>
         <li><%= link_to "Add to Cart", products_path %></li>
       </ul>
     <% end %>
