@@ -28,6 +28,7 @@ class ProductsControllerTest < ActionController::TestCase
     end
   end
   test "products#show displays a product if it exists!" do
+    #fake a user logged in 
     product_id = products(:one).id
     get :show, { id: product_id }
 
@@ -72,22 +73,24 @@ class ProductsControllerTest < ActionController::TestCase
     #faking logged in
     session[:user_id] = merchants(:one).id
 
-    product_params = { product:
+    product_params =
       { name: "Jammy Jams",
+        description: "They make the best jam.",
         price: 349,
         stock_quantity: 1,
         photo_url: 'grapes.jpg',
-        description: "They make the best jam."
       }
-    }
+
     assert_difference('Product.count', 1) do
-      post :create, {merchant_id: session[:user_id], product: product_params}
+      post :create, merchant_id: session[:user_id], product: product_params
     end
 
-    post :create, {merchant_id: session[:user_id], product: product_params}
+    post :create, merchant_id: session[:user_id], product: product_params
+
+    assert_response :success
+    assert_redirected_to merchant_path(assigns(:merchant).id)
 
     # TODO: this will change once we add in the product_categories#new path where a customer should add their new product to some categories after they make the product. For now, redirect to the merchant_path.
-    assert_redirected_to merchant_path(assigns(:merchant))
   end
 
   test "cannot create a new product if not logged in" do

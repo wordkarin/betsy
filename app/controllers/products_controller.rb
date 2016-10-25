@@ -18,10 +18,12 @@ class ProductsController < ApplicationController
     # This is the individual product page
     @product = Product.find(params[:id])
     @categories = @product.categories
-    if @current_user.id == @product.merchant_id
-      @user_page = true
-    else
+
+    # If user is not logged in OR user is not the owner of the product, show them the add review/add to cart button. If they are the owner, show them the edit link.
+    if @current_user == nil || @current_user.id != @product.merchant_id
       @user_page = false
+    else
+      @user_page = true
     end
   end
 
@@ -42,17 +44,13 @@ class ProductsController < ApplicationController
   def create
     current_user
     # Within the context of a merchant, post the form from new.
-    @merchant = Merchant.find(params[:merchant_id])
-    if @merchant != @current_user
-      # display some message and re-route to @current_user's page?
-    elsif @current_user == nil
-      # redirect to login page.
-    else
-      @product = @merchant.products.new(product_params)
-    end
+    @merchant = Merchant.find(@current_user.id)
+
+    @product = @merchant.products.new(product_params)
 
     if @product.save(product_params)
       redirect_to merchant_path(@merchant)
+      return
     else
       render :new
     end
@@ -78,17 +76,16 @@ class ProductsController < ApplicationController
 
   def update
     current_user
-    check_user
     # This is the PATCH call when a merchant updates their product
     @product = Product.find(params[:id])
 
     @merchant = Merchant.find(@product.merchant_id)
 
-    if @merchant != @current_user
-      # display some message and re-route to @current_user's page?
-    elsif @current_user == nil
-      # redirect to login page.
-    end
+    # if @merchant != @current_user
+    #   # display some message and re-route to @current_user's page?
+    # elsif @current_user == nil
+    #   # redirect to login page.
+    # end
 
     if @product.update(product_params)
       redirect_to merchant_path(@merchant.id)
