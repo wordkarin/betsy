@@ -44,12 +44,7 @@ header section#category-list article.top-bar-section ul {
   text-align: center;
 }
 
-/*MAIN PAGE*/
-img {
-  margin: auto;
-  padding-top: 4%;
-}
-
+/*ALL PAGES*/
 .page-title {
   padding-top: 2%;
   text-align: center;
@@ -57,7 +52,15 @@ img {
   color: #5E4E5B;
 }
 
+/*PRODUCT PAGES*/
 .product-img {
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+
+/*CATEGORY PAGES*/
+.category-img {
   display: block;
   width: 50%;
   margin: auto;
