@@ -1,14 +1,18 @@
 class OrderItemsController < ApplicationController
 
+# method creates one order item (adds one of product item to order)
   def create
-    @order = Order.find_by(id: params[:order_id].to_i)
-    @order_item = @order.order_items.new #here need params
-    # @order_item.quantity += 1
+    # @order = Order.find_by(id: params[:order_id].to_i)
+    @order = params[:order]
+    @product = params[:product]
+    params = {order_id: @order.id, product_id: @product.id, quantity: 1}
+    @order_item = @order.order_item.new(order_item_params(params))
     if @order_item.save
-      # SUCCESS # to order page?
-      # redirect_to product_path(SOME PRODUCT ID) #not sure how it finds it
+      # SUCCESS remove item from product stock
+      redirect_to product_path(@product)
     else
       # render # same but with flash message?
+      # if we removed item from product stock then replace it
       # NO SUCCESS
     end
 

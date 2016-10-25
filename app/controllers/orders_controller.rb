@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
     @order = @product.orders.new(order_params(params[:order]))
     @order.status = "pending"
     if @order.save
-      redirect_to order_items_path
+      redirect_to product_order_items_path(@product)
     else
       render product_path(@product.id)
     end
