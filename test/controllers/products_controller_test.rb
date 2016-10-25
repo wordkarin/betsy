@@ -59,14 +59,12 @@ class ProductsControllerTest < ActionController::TestCase
   end
 
   test "products#new is only visible to logged in users" do
-    # Need a real "current_user" method to run this test.
-    skip
     # Ensure there is no logged in user.
     session.delete(:user_id)
 
     get :new, {merchant_id: merchants(:one).id}
     assert_response :redirect
-    assert_template 'sessions/login_failure'
+    assert_redirected_to login_failure_path
   end
 
   test "can create a valid product (if logged in)" do
@@ -89,18 +87,16 @@ class ProductsControllerTest < ActionController::TestCase
     post :create, merchant_id: session[:user_id], product: product_params
 
 
-    # TODO: write a test that redirects to product_categories#new path where a customer should add their new product to some categories after they make the product. 
+    # TODO: write a test that redirects to product_categories#new path where a customer should add their new product to some categories after they make the product.
   end
 
   test "cannot create a new product if not logged in" do
-    # Need a real "current_user" method to run this test.
-    skip
     # Ensure there is no logged in user.
     session.delete(:user_id)
 
     post :create, {merchant_id: merchants(:one).id}
     assert_response :redirect
-    assert_template 'sessions/login_failure'
+    assert_redirected_to login_failure_path
   end
 
   # Need tests for new/create/edit(not done with code yet)

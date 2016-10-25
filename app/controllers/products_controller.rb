@@ -44,16 +44,21 @@ class ProductsController < ApplicationController
   def create
     current_user
     # Within the context of a merchant, post the form from new.
-    @merchant = Merchant.find(@current_user.id)
 
-    @product = @merchant.products.new(product_params)
-
-    if @product.save(product_params)
-      redirect_to merchant_path(@merchant)
-      return
+    if @current_user == nil
+      redirect_to login_failure_path
     else
-      render :new
-    end
+      @merchant = Merchant.find(@current_user.id)
+
+      @product = @merchant.products.new(product_params)
+
+      if @product.save(product_params)
+        redirect_to merchant_path(@merchant)
+        return
+      else
+        render :new
+      end
+    end 
   end
 
   def edit
