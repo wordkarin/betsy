@@ -21,7 +21,7 @@
   <tr>
     <th>Last four digits of Credit Card:</th>
     <!-- Will have to adjust the order model - to include leading zeros -->
-    <td><%= @order.cc_last_4 %></td>
+    <td><%= sprintf '%04d' % @order.cc_last_4 %></td>
   </tr>
   <tr>
     <th>Credit Card Expiration Date:</th>
