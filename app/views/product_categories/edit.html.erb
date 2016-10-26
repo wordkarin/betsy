@@ -1,0 +1,11 @@
+<section>
+  <head>
+    <h1>@product.name</h1>
+  </head>
+</section>
+
+<section>
+  <% @all_product_categories.each do | category | %>
+    <%= category.name %>
+  <% end %>
+</section>

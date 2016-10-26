@@ -39,6 +39,7 @@ class ProductsController < ApplicationController
       @merchant = @current_user
       @product = @merchant.products.new
     end
+    @all_categories = Category.all
   end
 
   def create
