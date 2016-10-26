@@ -58,7 +58,7 @@ class ProductsController < ApplicationController
       else
         render :new
       end
-    end 
+    end
   end
 
   def edit
@@ -66,16 +66,6 @@ class ProductsController < ApplicationController
     check_user
     @product = Product.find(params[:id])
 
-    if @current_user == nil
-      # If user is not logged in, cannot edit a page.
-      redirect_to login_failure_path
-    elsif @current_user.id == @product.merchant_id
-      render :edit
-    else
-      # If user is logged in but the product doesn't belong to them, don't let them edit.
-      render 'errors/wrong_user'
-      return
-    end
   end
 
 
@@ -111,8 +101,12 @@ class ProductsController < ApplicationController
   private
 
   def check_user
-    unless @current_user.products.include? Product.find(params[:id])
-      render 'errors/wrong_user'
+    if @current_user == nil
+      flash[:notice] = "You need to log in to edit this."
+      redirect_to product_path(Product.find(params[:id]))
+    elsif !@current_user.products.include? Product.find(params[:id])
+      flash[:notice] = "You cannot edit this product; it doesn't belong to you."
+      redirect_to product_path(Product.find(params[:id]))
     end
   end
 end
