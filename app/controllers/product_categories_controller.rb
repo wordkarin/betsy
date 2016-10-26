@@ -8,6 +8,7 @@ class ProductCategoriesController < ApplicationController
     category_ids = params[:category_ids]
     num_of_categories = category_ids.length
     prev_num_of_prodcat = ProductCategory.where(product_id: params[:product_id]).length
+
     category_ids.each do | category_id |
       product_category = ProductCategory.new
       product_category.category_id = category_id
@@ -15,12 +16,13 @@ class ProductCategoriesController < ApplicationController
 
       product_category.save
     end
-      if ProductCategory.where(product_id: params[:product_id]).length == (prev_num_of_prodcat + num_of_categories)
-        redirect_to products_path
-        flash[:notice] = "Successfully added category!"
-      else
-        render :new
-      end
+
+    current_num_of_prodcat = ProductCategory.where(product_id: params[:product_id]).length
+    if current_num_of_prodcat == (prev_num_of_prodcat + num_of_categories)
+      redirect_to products_path
+    else
+      render :new
+    end
 
   end
 

@@ -54,7 +54,7 @@ class ProductsController < ApplicationController
 
       if @product.save(product_params)
         # redirect_to merchant_path(@merchant)
-          redirect_to new_product_product_category_path(@product.id)
+        redirect_to new_product_product_category_path(@product.id)
         return
       else
         render :new
