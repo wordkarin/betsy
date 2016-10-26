@@ -4,7 +4,7 @@ class OrdersControllerTest < ActionController::TestCase
 
   # CREATE!!!
   test "should be able to create a new order" do
-    post_params = {product_id: products(:three).id, order: {status: "pending"}}
+    post_params = {product_id: products(:three).id, order: orders(:three_pending)}
     post :create, post_params
     assert_response :redirect
   end
