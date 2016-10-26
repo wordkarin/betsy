@@ -1,18 +1,27 @@
 class OrdersController < ApplicationController
 
   def create
-    # if @product.stock_quantity > 0 else render product_path(@product.id)
     @product = Product.find_by(id: params[:product_id].to_i)
-    #if @product == nil
-    @order = @product.orders.new
-    @order.status = "pending"
-    if @order.save
-      OrderItem.get_order_item(@product, @order)
-      # redirect_to product_order_items_path(@product)
-      redirect_to product_path(@product)
+    if @product != nil
+      if @product.stock_quantity >= 0
+        @order = @product.orders.new
+        @order.status = "pending"
+        if @order.save
+          OrderItem.get_order_item(@product, @order)
+          @product.stock_quantity -= 1
+          @product.save
+          # redirect_to product_order_items_path(@product)
+          redirect_to product_path(@product)
+          # else
+        else
+          render product_path(@product.id), flash: {notice: "Sorry, something that wasn't supposed to happen, happened."}
+        end
+      else
+        render product_path(@product), flash: {notice: "Sorry, come back another time, product has run out."}
+      end #stock_quantity
     else
-      render product_path(@product.id)
-    end
+      return redirect_to products_path , flash: {notice: "Sorry, this product does not exist."}
+    end # @product == nil
   end
   # def show
   #   @order = Order.find(params[:id].to_i)
