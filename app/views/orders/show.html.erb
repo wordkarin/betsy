@@ -47,7 +47,8 @@
       <th>Product Item</th>
       <th>Quantity</th>
       <th>Price per Item</th>
-      <th>Total Purchase Price</th>
+      <th>Total</th>
+      <th>Associated Merchant</th>
       <th>Shipped?</th>
     </tr>
     <% @order_items.each do |item| %>
@@ -56,6 +57,7 @@
         <td><%= item.quantity%></td>
         <td><%= Product.find(item.product_id).price%></td>
         <td><%= Product.find(item.product_id).price * item.quantity%></td>
+        <td><%= Product.find(item.product_id).merchant_id %></td>
         <td>
           <%= item.shipping_status%>
           <% if session[:user_id] == Product.find(item.product_id).merchant_id %>
