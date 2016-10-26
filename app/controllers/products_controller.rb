@@ -53,12 +53,13 @@ class ProductsController < ApplicationController
       @product = @merchant.products.new(product_params)
 
       if @product.save(product_params)
-        redirect_to merchant_path(@merchant)
+        # redirect_to merchant_path(@merchant)
+          redirect_to new_product_product_category_path(@product.id)
         return
       else
         render :new
       end
-    end 
+    end
   end
 
   def edit

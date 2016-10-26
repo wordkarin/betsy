@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :products, except: [:new, :create, :destroy] do
   	resources :reviews, except: [:update, :destroy, :edit]
-    resources :product_categories, only: [:new]
+    resources :product_categories, only: [:new, :create]
     resources :orders, only: [:create]
   end
   patch 'products/:id/retired', to: 'products#retired', as: 'product_retired'

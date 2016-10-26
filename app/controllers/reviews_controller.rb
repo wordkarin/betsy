@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
       redirect_to product_path(product_id)
     else
       @product = @reviews_by_product.first.product
-    end 
+    end
   end
 
   def show
@@ -28,7 +28,6 @@ class ReviewsController < ApplicationController
 
     @review = Review.new(review_params)
     @product.reviews << @review
-
     if @review.save
       redirect_to product_reviews_path
     else

@@ -5,8 +5,23 @@ class ProductCategoriesController < ApplicationController
   end
 
   def create
-    @product_category = ProductCategory.new(product_category_params)
-    raise
+    category_ids = params[:category_ids]
+    num_of_categories = category_ids.length
+    prev_num_of_prodcat = ProductCategory.where(product_id: params[:product_id]).length
+    category_ids.each do | category_id |
+      product_category = ProductCategory.new
+      product_category.category_id = category_id
+      product_category.product_id = params[:product_id]
+
+      product_category.save
+    end
+      if ProductCategory.where(product_id: params[:product_id]).length == (prev_num_of_prodcat + num_of_categories)
+        redirect_to products_path
+        flash[:notice] = "Successfully added category!"
+      else
+        render :new
+      end
+
   end
 
   def destroy
@@ -15,7 +30,7 @@ class ProductCategoriesController < ApplicationController
   private
 
   def product_category_params
-    params.require(:product_category).permit(:category)
+    params.require(:product_category).permit(:product_id, :category_ids[])
   end
 
 
