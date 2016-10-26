@@ -17,8 +17,18 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: @order.id)
 
+    @revenue = {}
+    @order_items.each do |item|
+      @prdct = Product.find(item.product_id)
+      merchant = @prdct.merchant_id
+      price = @prdct.price
+      quantity = item.quantity
+      @item_revenue = price * quantity
+      @revenue[merchant] = @item_revenue
+    end
   end
-  #
+
+
   def edit
     # Edit order, is more like, edit the contact information of the user in the cart. This will be called when they go to checkout their order.
     @order = Order.find(params[:id])

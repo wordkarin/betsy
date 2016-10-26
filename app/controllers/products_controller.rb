@@ -58,7 +58,7 @@ class ProductsController < ApplicationController
       else
         render :new
       end
-    end 
+    end
   end
 
   def edit

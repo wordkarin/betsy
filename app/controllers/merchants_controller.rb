@@ -6,11 +6,18 @@ class MerchantsController < ApplicationController
   def show
     @merchant = Merchant.find(params[:id])
 
-    # @merchant.products.each do |product|
-    #   product = @merchant_product
-    #   product.orders.reverse.each do |order|
-    #     @order_items = OrderItem.where(order_id = order.id)
-    #   end
+    @merchant.products.each do |product|
+      @item = OrderItem.where(product_id: product.id)
+    end
+    # 
+    # @revenue = {}
+    # @order_items.each do |item|
+    #   @prdct = Product.find(item.product_id)
+    #   merchant = @prdct.merchant_id
+    #   price = @prdct.price
+    #   quantity = item.quantity
+    #   @item_revenue = price * quantity
+    #   @revenue[merchant] = @item_revenue
     # end
 
 
