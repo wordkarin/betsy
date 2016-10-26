@@ -49,7 +49,12 @@
         <td><%= item.quantity%></td>
         <td><%= Product.find(item.product_id).price%></td>
         <td><%= Product.find(item.product_id).price * item.quantity%></td>
-        <td><%= item.shipping_status%></td>
+        <td>
+          <%= item.shipping_status%>
+          <% if session[:user_id] == Product.find(item.product_id).merchant_id %>
+          <%= button_to "ship this product", some_path %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </table>
