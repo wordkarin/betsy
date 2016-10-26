@@ -1,4 +1,7 @@
-<h1>This is the show page for order <%= @order.name%></h1>
+<article>
+  <header>
+    <h1 class="page-title">This is the show page for order <%= @order.name%></h1>
+  </header>
 
 <p><%= link_to "Edit Order", edit_order_path(params[:id]) %></p>
 
@@ -66,3 +69,7 @@
     <p> Merchant_id: <%=(item.product.merchant_id) %>Product_id: <%= item.product_id %> Order_id <%= item.order_id %></p>
   <% end %>
 <% end %>
+
+<!-- this link to edit order will be restricted to customer if order_status is pending) -->
+  <p><%= link_to "Edit Order", edit_order_path(params[:id]) %></p>
+</article>

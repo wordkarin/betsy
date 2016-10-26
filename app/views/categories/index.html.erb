@@ -1,0 +1,13 @@
+<article>
+  <header>
+    <h1 class="page-title">Product Categories</h1>
+  </header>
+
+  <% @all_categories.each do | category | %>
+    <ul>
+      <li>
+        <%= link_to category.name, category_path(category.id) %>
+      </li>
+    </ul>
+  <% end %>
+</article>

@@ -1,6 +1,7 @@
-<h1>Here is all the information for a single merchant and links to what they do</h1>
-
-<article class="">
+<article>
+  <header>
+    <h1 class="page-title">Here is all the information for a single merchant and links to what they do</h1>
+  </header>
   <section>
     <%= "You are registed under the name: #{@merchant.name} (#{@merchant.email})" %>
     <%= "through the #{"PROVIDER"} authentication" %>
@@ -12,57 +13,43 @@
 
     </p>
   </section>
-  <% @merchant.products.each do |product| %>
-  <!-- <section>
-  <%= link_to "#{product.name}", product_path(product) %>
-  <%= link_to "Edit", edit_product_path(product) %>
-  <%= link_to "" %>
-</section>
-<p>
+<% @merchant.products.each do |product| %>
 
-</p> -->
-<!-- <% product.orders.reverse.each do |order| %> -->
-<!-- <section>
-<%= link_to "Date: #{order.purchase_time.strftime("%Y-%m-%d")} Order##{order.id}: Customer: #{order.name}", order_path(order) %>
-<%= "Order status: #{order.status}" %>
-</section>
-<% end %> -->
-
-<% if product.orders.length > 0 %>
-<table>
-  <h3><%= link_to "#{product.name}", product_path(product) %>
-    <small><%= link_to "Edit", edit_product_path(product) %></small>
-    <small><%= link_to "" %></small></h3>
-    <p><%= product.price %></p>
-    <tr>
-      <th>Order Date</th>
-      <th>Order Number</th>
-      <th>Customer</th>
-      <th>Order Status</th>
-      <!-- <th>Order Revenue</th> -->
-      <th>Order Details</th>
-    </tr>
-    <% product.orders.reverse.each do |order| %>
-    <section>
+  <% if product.orders.length > 0 %>
+  <!-- For each product the merchant has, we're listing the product, and then inside each   product's section, we're listing each of the orders that contains that product. -->
+    <table>
+      <h3><%= link_to "#{product.name}", product_path(product) %>
+        <small><%= link_to "Edit", edit_product_path(product) %></small>
+        <small><%= link_to "" %></small>
+      </h3>
+      <!-- Update this to be revenue instead of product price. -->
+      <p>THIS IS THE PRODUCT'S PRICE<%= product.price %></p>
       <tr>
-        <td><%=order.purchase_time.strftime("%Y-%m-%d")%></td>
-        <td><%=order.id%></td>
-        <td><%=order.name%></td>
-        <td><%=order.status%></td>
-        <!-- <td><%= OrderItem.find_by(product_id = product.id, order_id = order.id)%></td> -->
-        <td><%= link_to "View", order_path(order) %></td>
+        <th>Order Date</th>
+        <th>Order Number</th>
+        <th>Customer</th>
+        <th>Order Status</th>
+        <!-- <th>Order Revenue</th> -->
+        <th>Order Details</th>
       </tr>
-    </section>
-    <% end %>
-  </table>
+      <% product.orders.reverse.each do |order| %>
+        <section>
+          <tr>
+            <td><%=order.purchase_time.strftime("%Y-%m-%d")%></td>
+            <td><%=order.id%></td>
+            <td><%=order.name%></td>
+            <td><%=order.status%></td>
+            <!-- <td><%= OrderItem.find_by(product_id = product.id, order_id = order.id)%></td>   -->
+            <td><%= link_to "View", order_path(order) %></td>
+          </tr>
+        </section>
+      <% end %>
+    </table>
+  <% else %>
+    <h3><%= link_to "#{product.name}", product_path(product) %>
+      <small><%= link_to "Edit", edit_product_path(product) %></small>
+      <small><%= link_to "" %></small>
+    </h3>
+  <% end %>
+<% end %>
 </article>
-<% else %>
-<h3><%= link_to "#{product.name}", product_path(product) %>
-  <small><%= link_to "Edit", edit_product_path(product) %></small>
-  <small><%= link_to "" %></small></h3>
-<% end %>
-<% end %>
-
-  <p>
-    This is the merchants#show view
-  </p>

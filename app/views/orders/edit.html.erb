@@ -1,4 +1,7 @@
-<h1>Checkout</h1>
+<article>
+<header>
+  <h1>Checkout</h1>
+</header>
 <p><%= @order.name%>, please complete the following information to complete your checkout.</p>
 
 <%= form_for @order, :url => { method: :patch} do |f| %>
@@ -22,3 +25,4 @@
 
   <%= f.submit "Complete Order" %>
 <% end %>
+</article> 
