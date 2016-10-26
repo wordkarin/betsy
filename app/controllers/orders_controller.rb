@@ -25,11 +25,17 @@ class OrdersController < ApplicationController
   end
 
   def update
-
-  end 
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+      flash[:notice] = "Thank you for placing your order with BasketCase. Please come again soon!"
+      redirect_to order_path(params[:id])
+    else
+      redirect_to root_path
+    end
+  end
 
   private
-  def order_params(params)
+  def order_params
     params.require(:order).permit(:name, :email, :mailing_address, :cc_last_4, :cc_expire, :status)
     # params.permit!
   end

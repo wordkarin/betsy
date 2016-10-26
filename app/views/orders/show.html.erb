@@ -1,7 +1,11 @@
 <article>
   <header>
-    <h1 class="page-title">This is the show page for order <%= @order.name%></h1>
+    <h1 class="page-title">Order Page for<%= @order.name%></h1>
   </header>
+
+  <%if flash[:notice]%>
+    <h2 id="notice"><%= flash[:notice] %></h2>
+  <%end%>
 
 <p><%= link_to "Edit Order", edit_order_path(params[:id]) %></p>
 
