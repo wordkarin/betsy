@@ -23,18 +23,24 @@ class OrdersController < ApplicationController
       return redirect_to products_path , flash: {notice: "Sorry, this product does not exist."}
     end # @product == nil
   end
-  # def show
-  #   @order = Order.find(params[:id].to_i)
-  # end
-  #
-  # def edit
-  #   @order = Order.find(params[:id].to_i)
-  #   # needs to be able to select the order_item
-  # end
+
+  def show
+    @order = Order.find(params[:id])
+    @order_items = OrderItem.where(order_id: @order.id)
+
+  end
+
+  def edit
+    # Edit order, is more like, edit the contact information of the user in the cart. This will be called when they go to checkout their order.
+    @order = Order.find(params[:id])
+  end
+
+  def update
+
+  end
 
   private
   def order_params(params)
-    # params.require(:order).permit(:name, :email, :mailing_address, :cc_last_4, :cc_expire, :status)
-    params.permit!
+    params.require(:order).permit(:name, :email, :mailing_address, :cc_last_4, :cc_expire, :status)
   end
 end

@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class ReviewsControllerTest < ActionController::TestCase
+
   test "Should render reviews index page for a specific product" do
     product = products(:one)
 
