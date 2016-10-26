@@ -4,19 +4,15 @@ class MerchantsController < ApplicationController
   end
 
   def show
+    current_user
     @merchant = Merchant.find(params[:id])
 
-    # @merchant.products.each do |product|
-    #   product = @merchant_product
-    #   product.orders.reverse.each do |order|
-    #     @order_items = OrderItem.where(order_id = order.id)
-    #   end
-    # end
-
+    if @current_user == nil || @current_user != @merchant
+      @user_page = false
+    else
+      @user_page = true
+    end
 
   end
-
-  # def create
-  # end
 
 end
