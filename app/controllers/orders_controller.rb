@@ -14,8 +14,8 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id].to_i)
-    @order_items = OrderItem.where(order_id = params[:id].to_i)
+    @order = Order.find(params[:id])
+    @order_items = OrderItem.where(order_id: @order.id)
 
   end
   #

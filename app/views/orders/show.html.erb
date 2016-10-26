@@ -44,15 +44,13 @@
       <th>Shipped?</th>
     </tr>
     <% @order_items.each do |item| %>
-      <% if @order.id == item.order_id %>
-        <tr>
-          <td><%= Product.find(item.product_id).name%><td>
-          <td><%= item.quantity%><td>
-          <td><%=Product.find(item.product_id).price%><td>
-          <td><%= Product.find(item.product_id).price * item.quantity%><td>
-          <td><%= item.shipping_status%><td>
-        </tr>
-      <% end %>
+    <tr>
+        <td><%= Product.find(item.product_id).name%></td>
+        <td><%= item.quantity%></td>
+        <td><%= Product.find(item.product_id).price%></td>
+        <td><%= Product.find(item.product_id).price * item.quantity%></td>
+        <td><%= item.shipping_status%></td>
+      </tr>
     <% end %>
   </table>
 </section>
