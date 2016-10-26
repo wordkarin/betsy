@@ -6,7 +6,7 @@ class OrderItem < ActiveRecord::Base
   # validates_inclusion_of :product_id, :in => Product.all.pluck(:id)
   validates :order, presence: true
 
-  def self.get_order_item(product, order)
+  def self.create_order_item(product, order)
     order_item = product.order_items.new(quantity: 1)
     order_item.order_id = order.id
     if order_item.save

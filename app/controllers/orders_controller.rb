@@ -3,11 +3,11 @@ class OrdersController < ApplicationController
   def create
     @product = Product.find_by(id: params[:product_id].to_i)
     if @product != nil
-      if @product.stock_quantity >= 0
+      if @product.stock_quantity > 0
         @order = @product.orders.new
         @order.status = "pending"
         if @order.save
-          OrderItem.get_order_item(@product, @order)
+          OrderItem.create_order_item(@product, @order)
           @product.stock_quantity -= 1
           @product.save
           # redirect_to product_order_items_path(@product)
