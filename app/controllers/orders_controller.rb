@@ -22,6 +22,29 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: @order.id)
 
+    user_product_in_order = nil
+    @order.products.each do |product|
+      if product.merchant_id == @current_user
+        user_product_in_order = true
+      else
+        user_product_in_order = false
+      end
+    end
+
+    if @order.id == @current_order_id && @order.status == "pending"
+      @user_page = true
+    elsif user_product_in_order && @order.status != "pending"
+      @user_page = true
+    else
+      @user_page = false
+      flash[:notice] = "You can not view this order."
+      redirect_to root_path
+    end
+
+
+
+
+
     @revenue = {}
     @total_revenue = 0
     @order_items.each do |item|
@@ -31,6 +54,8 @@ class OrdersController < ApplicationController
       @item_revenue = (@price * @quantity)
       @total_revenue = @item_revenue + @total_revenue
     end
+
+
 
   end
 
