@@ -1,6 +1,6 @@
 <article>
   <header>
-    <h1 class="page-title">Order Page for<%= @order.name%></h1>
+    <h1 class="page-title">Order Page for <%= @order.name%></h1>
   </header>
 
   <%if flash[:notice]%>
@@ -11,7 +11,7 @@
 
 <section>
   <p></p>
-  <table style="width:100%">
+  <table style="width:100%" class="table">
     <h3>Customer Information:</h3>
   <tr>
     <th>Email:</th>
@@ -41,7 +41,7 @@
 
 
 <section>
-  <table>
+  <table class="table">
     <h3>Order Information:</h3>
     <tr>
       <th>Product Item</th>
