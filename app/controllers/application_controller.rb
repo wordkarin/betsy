@@ -22,9 +22,9 @@ private
   # faking an order!
   def current_order
     begin
-      # @current_order_id = session[:order_id]
+      @current_order_id = session[:order_id]
       #we can fake this by setting it to 6
-      @current_order_id = 6
+      # @current_order_id = 6
     rescue ActiveRecord::RecordNotFound
       @current_order_id = nil
     end
