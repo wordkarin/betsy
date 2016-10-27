@@ -1,5 +1,10 @@
 <!-- TODO: If session[user.id] is not the same as the merchant, should display a buy button (which will add to an existing order, or create a new order.) Otherwise, show a link to edit. -->
 <header>
+  <section>
+    <% if flash[:notice] %>
+    <h2 id="notice"> <%= flash[:notice] %></h2>
+    <% end %>
+  </section>
   <h1 class="page-title">
     <%= @product.name %>
   </h1>
