@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
 
   validates :status, :presence => true, inclusion: { in: %w(pending paid completed cancelled) }
 
-private  
+private
   def card_adjust(cc_last_4)
 
   end

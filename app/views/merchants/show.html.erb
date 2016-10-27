@@ -15,6 +15,10 @@
   <% end %>
   <% end %> -->
 
+<!-- For figuring stuff out -->
+  <h4>Total Revenue:<%=money_format(@cumulative_revenue)%><h4>
+
+    <!-- For figuring stuff out -->
 
 
     <!-- For checking work! -->
@@ -32,7 +36,6 @@
 
   <% if @user_page == true %>
     <section>
-      <h4>Total Revenue:<%=money_format(@cumulative_revenue)%><h4>
       <%= link_to "Add a new product", new_merchant_product_path(@merchant) %>
       <%= link_to "Add a new product category", new_category_path %>
     </section>
