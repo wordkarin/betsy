@@ -43,6 +43,9 @@ class OrdersController < ApplicationController
   def pay
     @order = Order.find(params[:id])
     if @order.update(order_params)
+      # delete your order_id out of session so that you can make another order!
+      session.delete(:order_id)
+
       flash[:notice] = "Thank you for placing your order with BasketCase. Please come again soon!"
       redirect_to order_path(params[:id])
     else
