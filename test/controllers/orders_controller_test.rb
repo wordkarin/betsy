@@ -58,8 +58,8 @@ class OrdersControllerTest < ActionController::TestCase
 # UPDATE _____________________ #
 
   test "updating an order should redirect to the order page" do
-    session[:order_id] = orders(:one)
-    order = session[:order_id]
+    session[:order_id] = orders(:one).id
+    order = orders(:one)
     product_id = products(:one).id
     post_params = {id: order.id, product_id: product_id}
     post :update, post_params
@@ -68,7 +68,7 @@ class OrdersControllerTest < ActionController::TestCase
   end
 
   test "updating an order with a new product should add it to the existing order" do
-    session[:order_id] = orders(:one)
+    session[:order_id] = orders(:one).id
     order = orders(:one)
     # contains product(:one)
 

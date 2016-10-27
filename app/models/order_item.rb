@@ -42,7 +42,7 @@ class OrderItem < ActiveRecord::Base
         # SUCCESS, but we need to add a new order_item
       end #order.count
       # CREATE PATH
-      return Order.create_order_item(product,order) # returns the new order item
+      return OrderItem.create_order_item(product,order) # returns the new order item
   end
 
 end

@@ -41,9 +41,9 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(@current_order_id)
-    puts "#{session[:order_id] }<<<<<<<<<<<<<<<<<<<<"
-    if @order.status == "pending" || @order != nil
+    order_id = @current_order_id
+    @order = Order.find(order_id)
+    if @order.status == "pending"
       #SUCCESS
       @product = Product.find(params[:product_id])
       if OrderItem.update_order_item(@product, @order) != false
@@ -54,10 +54,10 @@ class OrdersController < ApplicationController
         return
       end
       redirect_to order_path(@order)
-    else #(not pending)/nil
+    else #(not pending)
       flash[:notice] = "Sorry, this order is not valid"
       redirect_to products_path
-    end #pending/nil?
+    end #pending
   end
 
   def pay
