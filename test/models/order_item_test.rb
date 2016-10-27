@@ -34,12 +34,12 @@ class OrderItemTest < ActiveSupport::TestCase
     assert_not order_item2.valid?
   end
 
-  test "the method get_order_item should create a new OrderItem instance" do
+  test "the method create_order_item should create a new OrderItem instance" do
     product = products(:one)
     order = orders(:one)
     #can we compare two different objects using assert_equal?
     assert_difference('OrderItem.count', 1) do
-      OrderItem.get_order_item(product, order)
+      OrderItem.create_order_item(product, order)
     end
   end
 
