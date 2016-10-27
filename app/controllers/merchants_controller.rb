@@ -8,8 +8,8 @@ class MerchantsController < ApplicationController
     @merchant = Merchant.find(params[:id])
 
     @cumulative_revenue = 0
-    @total_revenue = 0
     @merchant.products.each do |product|
+      @total_revenue = 0
       @item = OrderItem.where(product_id: product.id)
       @price = product.price
       @item.each do |i|

@@ -7,7 +7,12 @@
     <h2 id="notice"><%= flash[:notice] %></h2>
   <%end%>
 
-<p><%= link_to "Edit Order", edit_order_path(params[:id]) %></p>
+<!-- this link to edit order will be restricted to customer if order_status is pending) -->
+<% if @order.status == "pending" %>
+  <p>
+    <%= button_to "Checkout", edit_order_path(params[:id]), method: :get %>
+  </p>
+<% end %>
 
 <section>
   <p></p>
@@ -78,6 +83,5 @@
   <% end %>
 <% end %>
 
-<!-- this link to edit order will be restricted to customer if order_status is pending) -->
-  <p><%= link_to "Edit Order", edit_order_path(params[:id]) %></p>
+
 </article>
