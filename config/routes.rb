@@ -25,6 +25,9 @@ Rails.application.routes.draw do
 
   resources :orders, except: [:destroy, :index, :new, :create]
 
+  get 'orders/:id/checkout', to: 'orders#checkout', as: 'checkout'
+  patch 'orders/:id/pay', to: 'orders#pay', as: 'pay_for_order'
+
   # post 'products/:id/orders', to: 'orders#create'
 
   patch 'orders/:id/completed', to: 'orders#completed', as: 'order_completed'

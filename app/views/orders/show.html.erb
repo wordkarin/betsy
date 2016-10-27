@@ -10,7 +10,8 @@
 <!-- this link to edit order will be restricted to customer if order_status is pending) -->
 <% if @order.status == "pending" %>
   <p>
-    <%= button_to "Checkout", edit_order_path(params[:id]), method: :get %>
+    <!--  -->
+    <%= button_to "Checkout", checkout_path(@order.id), method: :get %>
   </p>
 <% end %>
 

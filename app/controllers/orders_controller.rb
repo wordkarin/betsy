@@ -7,6 +7,8 @@ class OrdersController < ApplicationController
     @order = @product.orders.new(order_params(params[:order]))
     @order.status = "pending"
     if @order.save
+      # When a user creates a new order, we want to save it in their session until the pay for it, so that they can look at it (and check out!).
+      session[:order_id] = @order.id
       redirect_to order_items_path
     else
       render product_path(@product.id)
@@ -14,6 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    current_user
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: @order.id)
 
@@ -30,12 +33,12 @@ class OrdersController < ApplicationController
   end
 
 
-  def edit
+  def checkout
     # Edit order, is more like, edit the contact information of the user in the cart. This will be called when they go to checkout their order.
     @order = Order.find(params[:id])
   end
 
-  def update
+  def pay
     @order = Order.find(params[:id])
     if @order.update(order_params)
       flash[:notice] = "Thank you for placing your order with BasketCase. Please come again soon!"
