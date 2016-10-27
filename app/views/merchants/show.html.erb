@@ -5,32 +5,9 @@
 
   </section>
 
-  <!-- TO THINK ABOUT KEEPING<, maybe
-  <% @merchant.products.each do |product| %>
-  <%@item.each do |i|%>
-    <p><%=i.order_id%><p>
-    <p><%=i.quantity%><p>
-    <% @total_revenue = @total_revenue + (i.quantity * @price) %>
-    <p><%=money_format(i.quantity * @price)%><p>
-  <% end %>
-  <% end %> -->
-
-
-  <% @merchant.products.each do |product| %>
-  <% if product.orders.length > 0 %>
-
-  </article>
-  <% else %>
-  <h3><%= link_to "#{product.name}", product_path(product) %>
-    <small><%= link_to "Edit", edit_product_path(product) %></small>
-    <small><%= link_to "" %></small></h3>
-  <% end %>
-  <% end %>
-  <!-- For checking work -->
-
   <% if @user_page == true %>
-  <h4>Total Revenue:<%=money_format(@cumulative_revenue)%><h4>
     <section>
+      <h4>Total Revenue:<%=money_format(@cumulative_revenue)%><h4>
       <%= link_to "Add a new product", new_merchant_product_path(@merchant) %>
       <%= link_to "Add a new product category", new_category_path %>
     </section>
