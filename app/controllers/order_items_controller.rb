@@ -1,5 +1,9 @@
 class OrderItemsController < ApplicationController
 
+  before_action :current_order
+  # def create
+  #
+  # end
 # method creates one order item (adds one of product item to order)
   def create
 

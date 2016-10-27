@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :current_order
   # before_action :check_user, only: [:edit, :update, :retired]
 
   def index

@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :current_order
   def index
     @reviews_by_product = Review.where(product_id: params[:product_id])
     product_id = params[:product_id]
