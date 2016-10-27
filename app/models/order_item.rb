@@ -7,6 +7,14 @@ class OrderItem < ActiveRecord::Base
   validates :order, presence: true
 
   def self.create_order_item(product, order)
+    if product == nil
+      return false
+    end
+    # OrderItem.where(order_id: order.id).each do |item|
+    #   if product.id == item[:product_id]
+    #     return false
+    #   end
+    # end
     order_item = product.order_items.new(quantity: 1)
     order_item.order_id = order.id
     if order_item.save

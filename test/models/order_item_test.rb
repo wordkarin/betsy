@@ -44,56 +44,56 @@ class OrderItemTest < ActiveSupport::TestCase
   end
 
   #_____________________________________________________#
-  # @todo write the method to pass these tests
+  # @todo write the code to pass these tests
   #_____________________________________________________#
 
   test "the method create_order_item should not create a new order item if there is already one with current order and product" do
     product = products(:one)
     order = orders(:one)
-    #can we compare two different objects using assert_equal?
+
     assert_difference('OrderItem.count', 1) do
       OrderItem.create_order_item(product, order)
       OrderItem.create_order_item(product, order)
     end
   end
 
-  test "the method update_order_item should update the quantity of an order item by one when the product is added to the order a second time" do
-    product = products(:one)
-    order = orders(:one)
-    order_item = OrderItem.create_order_item(product, order)
-
-    assert_equal(order_item[:quantity], 2) do
-      order_item.update_order_item(product, order)
-    end
-
-  end
-
-  test "the method update_order_item should not update an order item if the order[:status] is 'paid'" do
-    product = products(:one)
-    order = orders(:one)
-    order[:status] = "paid"
-    order_item = OrderItem.update_order_item(product, order)
-    assert_not order_item.valid?
-
-  end
-
-  test "the method update_order_item should not update an order item if the order[:status] is 'completed'" do
-    product = products(:one)
-    order = orders(:one)
-    order[:status] = "completed"
-    order_item = OrderItem.update_order_item(product, order)
-    assert_not order_item.valid?
-
-  end
-
-  test "the method update_order_item should not update an order item if the order[:status] is 'cancelled'" do
-    product = products(:one)
-    order = orders(:one)
-    order[:status] = "cancelled"
-    order_item = OrderItem.update_order_item(product, order)
-    assert_not order_item.valid?
-
-  end
+  # test "the method update_order_item should update the quantity of an order item by one when the product is added to the order a second time" do
+  #   product = products(:one)
+  #   order = orders(:one)
+  #   order_item = OrderItem.create_order_item(product, order)
+  #
+  #   assert_equal(order_item[:quantity], 2) do
+  #     order_item.update_order_item(product, order)
+  #   end
+  #
+  # end
+  #
+  # test "the method update_order_item should not update an order item if the order[:status] is 'paid'" do
+  #   product = products(:one)
+  #   order = orders(:one)
+  #   order[:status] = "paid"
+  #   order_item = OrderItem.update_order_item(product, order)
+  #   assert_not order_item.valid?
+  #
+  # end
+  #
+  # test "the method update_order_item should not update an order item if the order[:status] is 'completed'" do
+  #   product = products(:one)
+  #   order = orders(:one)
+  #   order[:status] = "completed"
+  #   order_item = OrderItem.update_order_item(product, order)
+  #   assert_not order_item.valid?
+  #
+  # end
+  #
+  # test "the method update_order_item should not update an order item if the order[:status] is 'cancelled'" do
+  #   product = products(:one)
+  #   order = orders(:one)
+  #   order[:status] = "cancelled"
+  #   order_item = OrderItem.update_order_item(product, order)
+  #   assert_not order_item.valid?
+  #
+  # end
 
 
 end
