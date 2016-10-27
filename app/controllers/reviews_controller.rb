@@ -36,7 +36,6 @@ class ReviewsController < ApplicationController
 
     @review = Review.new(review_params)
     @product.reviews << @review
-
     if @review.save
       redirect_to product_reviews_path
     else

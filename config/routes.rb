@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :products, except: [:new, :create, :destroy] do
   	resources :reviews, except: [:update, :destroy, :edit]
-    resources :product_categories, only: [:new]
+    resources :product_categories, only: [:new, :create]
     resources :orders, only: [:create]
   end
   patch 'products/:id/retired', to: 'products#retired', as: 'product_retired'
@@ -35,10 +35,6 @@ Rails.application.routes.draw do
   # RELATIONSHIP TABLE ROUTES
   resources :order_items, only: [:destroy, :create, :update]
   patch 'order_items/:id/shipped', to: 'order_items#shipped', as: 'order_items_shipped'
-
-
-  resources :product_categories, only: [:create, :destroy]
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

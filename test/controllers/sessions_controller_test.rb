@@ -6,6 +6,14 @@ class SessionsControllerTest < ActionController::TestCase
     get :create,  {provider: "google"}
   end
 
+  test "should get index" do
+    session[:user_id] = merchants(:one).id
+
+    get :index
+    assert_response :success
+    assert_equal assigns(:user).id, session[:user_id]
+  end
+
   test "Attempting to log in without email should send you to login failure page" do
     # login_a_user
     request.env['omniauth.auth'] = OmniAuth.config.mock_auth[:google]
