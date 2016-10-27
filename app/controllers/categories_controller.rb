@@ -6,7 +6,6 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
     @products_by_category = @category.products
   end
 
@@ -37,7 +36,7 @@ class CategoriesController < ApplicationController
     begin
       @category = Category.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      render "/errors/category_not_found"
+      redirect_to "/errors/category_not_found"
       return
     end
   end

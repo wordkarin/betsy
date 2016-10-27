@@ -9,6 +9,14 @@ class ReviewsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "If there are no reviews for a product, will redirect you to the product show page" do
+    product = products(:one)
+    product.reviews = []
+
+    get :index, product_id: product.id
+    assert_redirected_to product_path(product.id)
+  end
+
   test "Should render reviews new page for a specific product" do
     product = products(:two)
 

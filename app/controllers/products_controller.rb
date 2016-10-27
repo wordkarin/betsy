@@ -45,6 +45,7 @@ class ProductsController < ApplicationController
   def create
     current_user
     # Within the context of a merchant, post the form from new.
+    @all_categories = Category.all
 
     if @current_user == nil
       redirect_to login_failure_path
