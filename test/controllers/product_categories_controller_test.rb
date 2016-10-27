@@ -22,6 +22,16 @@ class ProductCategoriesControllerTest < ActionController::TestCase
     assert_redirected_to products_path
   end
 
+  test "should not create product_category if no category selected" do
+    product = products(:one)
+
+    assert_no_difference('ProductCategory.count') do
+      post :create, { product_id: product.id }
+    end
+
+    assert_redirected_to products_path
+  end
+
   test "should add the correct number of product_category items for the number of categories added to the product" do
     product = products(:three)
     category1 = categories(:one)
