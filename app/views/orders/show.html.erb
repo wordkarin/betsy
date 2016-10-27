@@ -69,7 +69,7 @@
     <% end %>
   </table>
 
-  <!-- <h3>Grand Total:<%= @total_revenue %></h3> -->
+  <h3>Grand Total:<%= money_format(@total_revenue) %></h3>
 </section>
 
 <% @order_items.each do |item| %>

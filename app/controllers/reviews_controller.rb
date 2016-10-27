@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
     else
       flash[:notice] = "You cannot write a review for your own product."
       redirect_to product_path(product.id)
-    end 
+    end
   end
 
   def create
