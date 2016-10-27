@@ -10,3 +10,6 @@ one:
 two:
   product: two
   category: two
+three:
+  product: one
+  category: two

@@ -39,11 +39,13 @@ class ProductsController < ApplicationController
       @merchant = @current_user
       @product = @merchant.products.new
     end
+    @all_categories = Category.all
   end
 
   def create
     current_user
     # Within the context of a merchant, post the form from new.
+    @all_categories = Category.all
 
     if @current_user == nil
       redirect_to login_failure_path
@@ -53,7 +55,7 @@ class ProductsController < ApplicationController
       @product = @merchant.products.new(product_params)
 
       if @product.save(product_params)
-        redirect_to merchant_path(@merchant)
+        redirect_to new_product_product_category_path(@product.id)
         return
       else
         render :new
