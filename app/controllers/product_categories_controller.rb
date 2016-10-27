@@ -7,8 +7,6 @@ class ProductCategoriesController < ApplicationController
   def create
     category_ids = product_category_params[:category_ids]
     product_id = product_category_params[:product_id]
-    # num_of_categories = category_ids.length
-    # prev_num_of_prod_cat = ProductCategory.where(product_id: product_id).length
 
     category_ids.each do | category_id |
       product_category = ProductCategory.new(product_id: product_id)
@@ -28,6 +26,4 @@ class ProductCategoriesController < ApplicationController
     params[:product_category] = {product_id: params[:product_id], category_ids: params[:category_ids]}
     params.require(:product_category).permit(:product_id, category_ids: [])
   end
-
-
 end
