@@ -14,6 +14,29 @@ class OrderItem < ActiveRecord::Base
     else
       return false
     end
-
   end
+
+  def self.update_order_item(product, order)
+    if order == nil || product == nil
+      return false
+    end
+    if product.stock_quantity > 0
+      if order.products.length > 1
+        #SUCCESS
+        # use enumerable?
+        OrderItem.where(order_id: order.id).each do |item|
+          if product.id == item[:product_id]
+            item[:quantity] += 1
+            if item.save
+              return item
+            end
+          end
+        end
+        # SUCCESS, but we need to add a new order_item
+        return Order.create_order_item(product,order) # returns the new order item
+      end #order.count
+    end #no stock
+    return false
+  end
+
 end
