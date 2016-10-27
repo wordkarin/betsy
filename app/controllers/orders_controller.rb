@@ -17,15 +17,15 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: @order.id)
 
-    @revenue = {}
-    @total_revenue = 0
-    @order_items.each do |item|
-      @prdct = Product.find(item.product_id)
-      @price = @prdct.price
-      @quantity = item.quantity
-      @item_revenue = (@price * @quantity)
-    end
-    @total_revenue = @item_revenue + @total_revenue
+    # @revenue = {}
+    # @total_revenue = 0
+    # @order_items.each do |item|
+    #   @prdct = Product.find(item.product_id)
+    #   @price = @prdct.price
+    #   @quantity = item.quantity
+    #   @item_revenue = (@price * @quantity)
+    # end
+    # @total_revenue = @item_revenue + @total_revenue
   end
 
 

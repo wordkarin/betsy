@@ -53,14 +53,15 @@
     </tr>
     <% @order_items.each do |item| %>
     <tr>
-        <td><%= @prdct.name%></td>
+
+        <td><%= Product.find(item.product_id).name%></td>
         <td><%= item.quantity%></td>
-        <td><%= money_format(@prdct.price)%></td>
-        <td><%= money_format(item.quantity * @prdct.price)%></td>
-        <td><%= @prdct.merchant_id %></td>
+        <td><%= money_format(Product.find(item.product_id).price)%></td>
+        <td><%= money_format(Product.find(item.product_id).price * item.quantity)%></td>
+        <td><%= Product.find(item.product_id).merchant_id%></td>
         <td>
           <%= item.shipping_status%>
-          <% if session[:user_id] == @prdct.merchant_id %>
+          <% if session[:user_id] == Product.find(item.product_id).merchant_id %>
           <%= button_to "ship this product", some_path %>
           <% end %>
         </td>
