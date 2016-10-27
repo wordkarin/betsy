@@ -54,6 +54,10 @@ header section#category-list article.top-bar-section ul {
   color: #5E4E5B;
 }
 
+table, th, td {
+  border: 1px solid black;
+}
+
 /*PRODUCT PAGES*/
 .product-img {
   display: block;

@@ -1,13 +1,22 @@
 <article>
   <header>
-    <h1 class="page-title">This is the show page for order <%= @order.name%></h1>
+    <h1 class="page-title">Order Page for <%= @order.name%></h1>
   </header>
 
-<p><%= link_to "Edit Order", edit_order_path(params[:id]) %></p>
+  <%if flash[:notice]%>
+    <h2 id="notice"><%= flash[:notice] %></h2>
+  <%end%>
+
+<!-- this link to edit order will be restricted to customer if order_status is pending) -->
+<% if @order.status == "pending" %>
+  <p>
+    <%= button_to "Checkout", edit_order_path(params[:id]), method: :get %>
+  </p>
+<% end %>
 
 <section>
   <p></p>
-  <table style="width:100%">
+  <table style="width:100%" class="table">
     <h3>Customer Information:</h3>
   <tr>
     <th>Email:</th>
@@ -37,21 +46,24 @@
 
 
 <section>
-  <table>
+  <table class="table">
     <h3>Order Information:</h3>
     <tr>
       <th>Product Item</th>
       <th>Quantity</th>
       <th>Price per Item</th>
-      <th>Total Purchase Price</th>
+      <th>Total</th>
+      <th>Associated Merchant</th>
       <th>Shipped?</th>
     </tr>
     <% @order_items.each do |item| %>
     <tr>
+
         <td><%= Product.find(item.product_id).name%></td>
         <td><%= item.quantity%></td>
-        <td><%= Product.find(item.product_id).price%></td>
-        <td><%= Product.find(item.product_id).price * item.quantity%></td>
+        <td><%= money_format(Product.find(item.product_id).price)%></td>
+        <td><%= money_format(Product.find(item.product_id).price * item.quantity)%></td>
+        <td><%= Product.find(item.product_id).merchant_id%></td>
         <td>
           <%= item.shipping_status%>
           <% if session[:user_id] == Product.find(item.product_id).merchant_id %>
@@ -61,8 +73,9 @@
       </tr>
     <% end %>
   </table>
-</section>
 
+  <h3>Grand Total:<%= money_format(@total_revenue) %></h3>
+</section>
 
 <% @order_items.each do |item| %>
   <% if @order.id == item.order_id %>
@@ -70,6 +83,5 @@
   <% end %>
 <% end %>
 
-<!-- this link to edit order will be restricted to customer if order_status is pending) -->
-  <p><%= link_to "Edit Order", edit_order_path(params[:id]) %></p>
+
 </article>

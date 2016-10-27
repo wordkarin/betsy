@@ -17,19 +17,36 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: @order.id)
 
+    @revenue = {}
+    @total_revenue = 0
+    @order_items.each do |item|
+      @prdct = Product.find(item.product_id)
+      @price = @prdct.price
+      @quantity = item.quantity
+      @item_revenue = (@price * @quantity)
+      @total_revenue = @item_revenue + @total_revenue
+    end
+
   end
-  #
+
+
   def edit
     # Edit order, is more like, edit the contact information of the user in the cart. This will be called when they go to checkout their order.
     @order = Order.find(params[:id])
   end
 
   def update
-
-  end 
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+      flash[:notice] = "Thank you for placing your order with BasketCase. Please come again soon!"
+      redirect_to order_path(params[:id])
+    else
+      redirect_to root_path
+    end
+  end
 
   private
-  def order_params(params)
+  def order_params
     params.require(:order).permit(:name, :email, :mailing_address, :cc_last_4, :cc_expire, :status)
     # params.permit!
   end
