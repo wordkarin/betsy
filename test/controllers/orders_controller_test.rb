@@ -58,7 +58,8 @@ class OrdersControllerTest < ActionController::TestCase
 # UPDATE _____________________ #
 
   test "updating an order should redirect to the order page" do
-    order = orders(:one)
+    session[:order_id] = orders(:one)
+    order = session[:order_id]
     product_id = products(:one).id
     post_params = {id: order.id, product_id: product_id}
     post :update, post_params
@@ -66,19 +67,18 @@ class OrdersControllerTest < ActionController::TestCase
     assert_response :redirect
   end
 
-  test "updating an order with a new product should add it to the order" do
-    product = products(:one)
-    new_post_params = {product_id: product.id}
-    post :create, new_post_params
-    order = Order.all.last
+  test "updating an order with a new product should add it to the existing order" do
+    session[:order_id] = orders(:one)
+    order = orders(:one)
+    # contains product(:one)
 
-    product_id = products(:two).id
-    update_post_params = {id: order.id, product_id: product_id}
+    prod_id = products(:three).id
+    update_post_params = {id: order.id, product_id: prod_id}
     post :update, update_post_params
 
 
 # currently comparing two different objects
-    assert_equal OrderItem.all.last[:product_id], product_id
+    assert_equal OrderItem.last.product_id, prod_id
   end
 
   # test "updating an order with a new product should only be possible when the order is 'pending'" do
@@ -102,8 +102,8 @@ test "should get show" do
   assert_response :success
 end
 
-test "should get edit" do
-  get :edit, id: orders(:one).id
+test "should get checkout" do
+  get :checkout, id: orders(:one).id
   assert_response :success
 end
 #

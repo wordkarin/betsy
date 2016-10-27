@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class OrderItemTest < ActiveSupport::TestCase
-  test "create a new product with valid data" do
+  test "create a new order item with valid data" do
     assert order_items(:one).valid?
     assert order_items(:two_true).valid?
   end

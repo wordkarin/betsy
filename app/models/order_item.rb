@@ -28,10 +28,9 @@ class OrderItem < ActiveRecord::Base
     if order == nil || product == nil
       return false
     end
-    if product.stock_quantity > 0
-      if order.products.length > 1
-        #SUCCESS
-        # use enumerable?
+
+      if order.products.length >= 1
+        #UPDATE PATH
         OrderItem.where(order_id: order.id).each do |item|
           if product.id == item[:product_id]
             item[:quantity] += 1
@@ -41,10 +40,9 @@ class OrderItem < ActiveRecord::Base
           end
         end
         # SUCCESS, but we need to add a new order_item
-        return Order.create_order_item(product,order) # returns the new order item
       end #order.count
-    end #no stock
-    return false
+      # CREATE PATH
+      return Order.create_order_item(product,order) # returns the new order item
   end
 
 end
