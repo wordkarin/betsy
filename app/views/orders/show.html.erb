@@ -55,8 +55,8 @@
     <tr>
         <td><%= @prdct.name%></td>
         <td><%= item.quantity%></td>
-        <td><%= @prdct.price%></td>
-        <td><%= @item_revenue%></td>
+        <td><%= money_format(@prdct.price)%></td>
+        <td><%= money_format(item.quantity * @prdct.price)%></td>
         <td><%= @prdct.merchant_id %></td>
         <td>
           <%= item.shipping_status%>

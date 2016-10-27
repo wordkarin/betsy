@@ -4,51 +4,37 @@
   <section>
     <%= "You are registed under the name: #{@merchant.name} (#{@merchant.email})" %>
     <%= "through the #{"PROVIDER"} authentication" %>
+
   </section>
 
-<<<<<<< HEAD
-    </p>
-  </section>
-
+  <!-- TO THINK ABOUT KEEPING<, maybe
+  <% @merchant.products.each do |product| %>
   <%@item.each do |i|%>
     <p><%=i.order_id%><p>
     <p><%=i.quantity%><p>
+    <% @total_revenue = @total_revenue + (i.quantity * @price) %>
+    <p><%=money_format(i.quantity * @price)%><p>
   <% end %>
+  <% end %> -->
 
-  <%= @pricing%>
 
+
+    <!-- For checking work! -->
   <% @merchant.products.each do |product| %>
+  <% if product.orders.length > 0 %>
 
-<% if product.orders.length > 0 %>
-<table>
+  </article>
+  <% else %>
   <h3><%= link_to "#{product.name}", product_path(product) %>
     <small><%= link_to "Edit", edit_product_path(product) %></small>
     <small><%= link_to "" %></small></h3>
-    <p><%= product.price %></p>
-    <tr>
-      <th>Order Date</th>
-      <th>Order Number</th>
-      <th>Customer</th>
-      <th>Order Status</th>
-      <!-- <th>Order Revenue</th> -->
-      <th>Order Details</th>
-    </tr>
-    <% product.orders.reverse.each do |order| %>
-    <section>
-      <tr>
-        <td><%=order.purchase_time.strftime("%Y-%m-%d")%></td>
-        <td><%=order.id%></td>
-        <td><%=order.name%></td>
-        <td><%=order.status%></td>
-        <!-- <td><%= OrderItem.find_by(product_id = product.id, order_id = order.id)%></td> -->
-        <td><%= link_to "View", order_path(order) %></td>
-      </tr>
-    </section>
-    <% end %>
-  </table>
-=======
+  <% end %>
+  <% end %>
+  <!-- For checking work -->
+
   <% if @user_page == true %>
     <section>
+      <h4>Total Revenue:<%=money_format(@cumulative_revenue)%><h4>
       <%= link_to "Add a new product", new_merchant_product_path(@merchant) %>
       <%= link_to "Add a new product category", new_category_path %>
     </section>
@@ -104,13 +90,8 @@
   <% end %>
 <% end %>
 <!-- >>>>>>> master -->
-</article>
-<% else %>
-<h3><%= link_to "#{product.name}", product_path(product) %>
-  <small><%= link_to "Edit", edit_product_path(product) %></small>
-  <small><%= link_to "" %></small></h3>
-<% end %>
-<% end %>
+
+
 
   <p>
     This is the merchants#show view

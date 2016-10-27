@@ -7,15 +7,17 @@ class MerchantsController < ApplicationController
     current_user
     @merchant = Merchant.find(params[:id])
 
+    @cumulative_revenue = 0
+    @total_revenue = 0
     @merchant.products.each do |product|
       @item = OrderItem.where(product_id: product.id)
       @price = product.price
+      @item.each do |i|
+        @revenue = i.quantity * @price
+        @total_revenue += @revenue
+      end
+      @cumulative_revenue += @total_revenue
     end
-
-    @item.each do |i|
-      i.order_id
-      i.quantity
-    end 
     #
     # @revenue = {}
     # @order_items.each do |item|
