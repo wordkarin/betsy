@@ -8,19 +8,17 @@ class OrdersController < ApplicationController
         @order.status = "pending"
         if @order.save
           OrderItem.create_order_item(@product, @order)
-          @product.stock_quantity -= 1
-          @product.save
-          # redirect_to product_order_items_path(@product)
+          # @product.stock_quantity -= 1
+          # @product.save
           redirect_to product_path(@product)
-          # else
         else
-          render product_path(@product.id), flash: {notice: "Sorry, something that wasn't supposed to happen, happened."}
+          render product_path(@product.id) #, error: {notice: "Sorry, something that wasn't supposed to happen, happened."}
         end
       else
-        render product_path(@product), flash: {notice: "Sorry, come back another time, product has run out."}
+        render product_path(@product) #, error: {notice: "Sorry, come back another time, product has run out."}
       end #stock_quantity
     else
-      return redirect_to products_path , flash: {notice: "Sorry, this product does not exist."}
+      return redirect_to products_path, flash: {notice: "Sorry, this product does not exist."}
     end # @product == nil
   end
 
@@ -36,7 +34,27 @@ class OrdersController < ApplicationController
   end
 
   def update
-
+    @order = Order.find(params[:id])
+    if @order.status == "pending" || @order != nil
+      @product = Product.find(params[:product_id])
+      if @product != nil
+        if @product.stock_quantity > 0
+          if @order.save
+            #SUCCESS
+            OrderItem.update_order_item(@product, @order)
+            redirect_to order_path(@order)
+          else
+            render product_path(@product.id) #, error: {notice: "Sorry, something that wasn't supposed to happen, happened."}
+          end
+        else
+          render product_path(@product) #, error: {notice: "Sorry, come back another time, product has run out."}
+        end #stock_quantity
+      else
+        redirect_to products_path, flash: {notice: "Sorry, this product does not exist."}
+      end # @product == nil
+    else #(not pending)/nil
+      render products_path #, error: {notice: "Sorry, this order is not valid"}
+    end #pending/nil?
   end
 
   private
