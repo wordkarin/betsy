@@ -7,7 +7,6 @@ class MerchantsController < ApplicationController
 
   def show
     current_user
-    current_order
     @merchant = Merchant.find(params[:id])
 
     @cumulative_revenue = 0
