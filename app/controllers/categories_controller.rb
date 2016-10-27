@@ -17,9 +17,9 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-  
+
     if @category.save
-      redirect_to new_merchant_product_path(@merchant)
+      redirect_to new_merchant_product_path(session[:user_id])
     else
       render :new
     end
