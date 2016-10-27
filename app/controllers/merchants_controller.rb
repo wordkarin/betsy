@@ -1,4 +1,6 @@
 class MerchantsController < ApplicationController
+  before_action :current_order
+
   def index
     @merchants = Merchant.all
   end

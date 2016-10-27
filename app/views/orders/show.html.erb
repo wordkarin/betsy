@@ -67,7 +67,7 @@
         <td><%= Product.find(item.product_id).merchant_id%></td>
         <td>
           <%= item.shipping_status%>
-          <% if session[:user_id] == Product.find(item.product_id).merchant_id %>
+          <% if @current_user == Product.find(item.product_id).merchant_id %>
           <%= button_to "ship this product", some_path %>
           <% end %>
         </td>
