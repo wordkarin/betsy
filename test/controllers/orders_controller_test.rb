@@ -76,6 +76,7 @@ class OrdersControllerTest < ActionController::TestCase
     update_post_params = {id: order.id, product_id: product_id}
     post :update, update_post_params
 
+
 # currently comparing two different objects
     assert_equal OrderItem.all.last[:product_id], product_id
   end
