@@ -7,11 +7,11 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    user = merchants(:one).id
+    session[:user_id] = merchants(:one).id
 
     get :index
     assert_response :success
-    assert_equal assigns(:user), user
+    assert_equal assigns(:user).id, session[:user_id]
   end
 
   test "Attempting to log in without email should send you to login failure page" do

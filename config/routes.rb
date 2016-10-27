@@ -37,10 +37,6 @@ Rails.application.routes.draw do
   patch 'order_items/:id/shipped', to: 'order_items#shipped', as: 'order_items_shipped'
 
 
-  resources :product_categories, only: [:create, :destroy]
-
-
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
