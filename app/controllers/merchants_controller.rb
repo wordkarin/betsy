@@ -1,10 +1,13 @@
 class MerchantsController < ApplicationController
+  before_action :current_order
+
   def index
     @merchants = Merchant.all
   end
 
   def show
     current_user
+    current_order
     @merchant = Merchant.find(params[:id])
 
     @cumulative_revenue = 0

@@ -27,7 +27,13 @@
             <% end %>
           </li>
           <li>Sign Up</li>
-          <li>Your Basket</li>
+          <li>
+            <% if @current_order_id.nil? %>
+              Your Basket
+            <% else %>
+              <%= link_to "Your Basket", order_path(@current_order_id) %>
+            <% end %>
+          </li>
         </ul>
       </nav>
     </section>

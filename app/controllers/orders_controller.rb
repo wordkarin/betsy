@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :current_order
+
 
   def create
     # if @product.stock_quantity > 0 else render product_path(@product.id)

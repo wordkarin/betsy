@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+  before_action :current_order
   def index
     @user = Merchant.find(session[:user_id]) # < recalls the value set in a previous request
   end

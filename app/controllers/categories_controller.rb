@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :category_exist?, only: [:show]
+  before_action :current_order
 
   def index
     @all_categories = Category.all
