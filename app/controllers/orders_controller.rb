@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
     else
       @user_page = false
       flash[:notice] = "You can not view this order."
-      redirect_to root_path
+      # redirect_to root_path
     end
 
 

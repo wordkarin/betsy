@@ -66,9 +66,11 @@
         <td><%= money_format(Product.find(item.product_id).price * item.quantity)%></td>
         <td><%= Product.find(item.product_id).merchant_id%></td>
         <td>
-          <%= item.shipping_status%>
-          <% if @current_user == Product.find(item.product_id).merchant_id %>
-          <%= button_to "ship this product", some_path %>
+          <% if @order_item != nil %>
+            <%= form_for @order_item do |f| %>
+            <% f.hidden_field :shipping_status, :value => true %>
+              <%= f.submit "Item Shipped" %>
+            <% end %>
           <% end %>
         </td>
       </tr>
