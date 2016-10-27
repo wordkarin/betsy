@@ -71,3 +71,39 @@ table, th, td {
   width: 50%;
   margin: auto;
 }
+
+/*TABLES*/
+.new-table {
+  padding: 2% 3% 0% 3%;
+}
+
+.product-new-table {
+  padding: 2% 15% 0% 15%;  
+}
+
+.form-text {
+  font-family: 'Josefin Slab', serif;
+  padding-left: 3%;
+  padding-top: 2%;
+}
+
+#category-list {
+  font-family: 'Josefin Slab', serif;
+  padding-left: 3%;
+}
+
+.indent {
+  margin-left: 3%;
+}
+
+.change-font {
+  font-family: 'Josefin Slab', serif;
+}
+
+.add-padding-top {
+  padding-top: 2%;
+}
+
+.underline {
+  border-bottom: dotted black 1px;
+}

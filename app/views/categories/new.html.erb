@@ -3,7 +3,9 @@
     <h1 class="page-title">Add a New Category</h1>
   </header>
 
-  <%= render partial: "form", locals: { submit_url: categories_path, http_method: :post } %>
+  <section class="new-table">
+    <%= render partial: "form", locals: { submit_url: categories_path, http_method: :post } %>
+  </section>
 
-  <h4>Don't want to add a category, <%= link_to "Go Back to All Categories", categories_path %></h4>
+  <h5 class="form-text">Don't want to add a category, <%= link_to "Go to All Categories", categories_path %></h5>
 </article>
