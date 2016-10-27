@@ -39,8 +39,8 @@
       <%= link_to "Add a new product category", new_category_path %>
     </section>
   <% end %>
-<% @merchant.products.each do |product| %>
 
+<% @merchant.products.each do |product| %>
   <% if product.orders.length > 0 %>
   <!-- For each product the merchant has, we're listing the product, and then inside each   product's section, we're listing each of the orders that contains that product. -->
     <table>

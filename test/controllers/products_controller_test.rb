@@ -28,7 +28,6 @@ class ProductsControllerTest < ActionController::TestCase
     end
   end
   test "products#show displays a product if it exists!" do
-    #fake a user logged in
     product_id = products(:one).id
     get :show, { id: product_id }
 
@@ -41,6 +40,17 @@ class ProductsControllerTest < ActionController::TestCase
     assert_no_difference ('Product.count') do
       get :show, { id: product_id }
     end
+  end
+
+  test "if a product belongs to a user, @user_page should be true so that we show the right things on the show page" do
+    #fake a user logged in
+    session[:user_id] = merchants(:one).id
+
+    product_id = products(:one).id
+
+    get :show, {id: product_id}
+    assert_equal assigns(:user_page), true
+
   end
 
   test "products#show displays an error page if product does not exist" do
@@ -79,7 +89,7 @@ class ProductsControllerTest < ActionController::TestCase
         photo_url: 'grapes.jpg',
       }
 
-    # make a new product actually adds a product to the databse.
+    # make a new product actually adds a product to the database.
     assert_difference('Product.count', 1) do
       post :create, merchant_id: session[:user_id], product: product_params
     end
@@ -99,5 +109,71 @@ class ProductsControllerTest < ActionController::TestCase
     assert_redirected_to login_failure_path
   end
 
-  # Need tests for new/create/edit(not done with code yet)
+  test "can get the edit page for their own product" do
+    #faking logged in
+    session[:user_id] = merchants(:one).id
+    product_id = merchants(:one).products.first.id
+
+    get :edit, {id: product_id}
+    #user is owner of product
+    assert_equal products(:one).merchant_id, session[:user_id]
+
+    assert_response :success
+  end
+
+  test "user cannot edit product if they're not the owner." do
+    #ensure a user not logged in
+    session.delete(:user_id)
+    product = merchants(:one).products.first
+
+    get :edit, {id: product.id}
+
+    #user cannot see edit page.
+    assert_redirected_to product_path(product.id)
+
+    #fake a user logged in
+    session[:user_id] = merchants(:two).id
+
+    #this product belongs to merchant one.
+    get :edit, {id: product.id}
+
+    #user cannot see edit page.
+    assert_redirected_to product_path(product.id)
+  end
+
+  test "user can successfully update a product they own" do
+    #fake a user logged in
+    session[:user_id] = merchants(:one).id
+    product = merchants(:one).products.first
+
+    product.name = "Jammy Jams"
+
+    patch :update, { id: product.id, product: product.attributes }
+
+    assert_redirected_to merchant_path(session[:user_id])
+
+    #updating a product should not add a new product to the database.
+
+    product.description = "The best product ever. Believe me."
+
+    assert_difference('Product.count', 0) do
+        patch :update, { id: product.id, product: product.attributes }
+    end
+    # We should add a test for the redirect in here, but Sky updated the redirect.
+  end
+
+  # I can't get this test to work. 
+  # test "if I don't supply a required field get redirected to edit" do
+  #   #fake a user logged in.
+  #   session[:user_id] = merchants(:one).id
+  #   product = merchants(:one).products.first
+  #
+  #   product.name = products(:two).name
+  #
+  #   #this should fail
+  #   patch :update, { id: product.id, product: product.attributes, merchant: merchants(:one) }
+  #   #this should render
+  #   assert_template :edit
+  #
+  # end
 end
