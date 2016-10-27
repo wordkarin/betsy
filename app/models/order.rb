@@ -8,6 +8,11 @@ class Order < ActiveRecord::Base
 
 
   validates :status, :presence => true, inclusion: { in: %w(pending paid completed cancelled) }
+
+private
+  def card_adjust(cc_last_4)
+
+  end
   # validates :name
   # validates :email
   # validates_length_of :cc_last_4, :is => 4, #should this be an integer

@@ -1,14 +1,13 @@
-<article>
-  <header>
-    <h1 class="page-title">Here is all the information for a single merchant and links to what they do</h1>
-  </header>
+<article class="">
   <section>
     <%= "You are registed under the name: #{@merchant.name} (#{@merchant.email})" %>
     <%= "through the #{"PROVIDER"} authentication" %>
+
   </section>
 
   <% if @user_page == true %>
     <section>
+      <h4>Total Revenue:<%=money_format(@cumulative_revenue)%><h4>
       <%= link_to "Add a new product", new_merchant_product_path(@merchant) %>
       <%= link_to "Add a new product category", new_category_path %>
     </section>
@@ -63,4 +62,10 @@
     <% end %>
   <% end %>
 <% end %>
-</article>
+<!-- >>>>>>> master -->
+
+
+
+  <p>
+    This is the merchants#show view
+  </p>

@@ -4,7 +4,7 @@
 </header>
 <p><%= @order.name%>, please complete the following information to complete your checkout.</p>
 
-<%= form_for @order, :url => { method: :patch} do |f| %>
+<%= form_for(@order, url: pay_for_order_path) do |f| %>
 
 <%= f.label :name %>
 <%= f.text_field :name %>
@@ -25,4 +25,4 @@
 
   <%= f.submit "Complete Order" %>
 <% end %>
-</article> 
+</article>
