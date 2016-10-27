@@ -14,7 +14,15 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @review = Review.new
+    current_user
+    product = Product.find(params[:product_id])
+
+    if @current_user.nil? || @current_user.id != product.merchant_id
+      @review = Review.new
+    else
+      flash[:notice] = "You cannot write a review for your own product."
+      redirect_to product_path(product.id)
+    end 
   end
 
   def create
