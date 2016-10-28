@@ -56,8 +56,12 @@
         </table>
 
       <% else %>
-
-        <h3 class="change-font"><%= link_to "#{product.name}", product_path(product) %></h3>
+        <ul class="row small-up-12 bullet-none">
+          <li class="column change-font">
+            <p><%= link_to "#{product.name} (qty: #{product.stock_quantity})", product_path(product), class: "increase-font" %></p>
+            <p><%= link_to(image_tag("#{product.photo_url}", class: "product-img-thumbnail"), product_path(product)) %></p>
+          </li>
+        </ul>
         <% if @user_page == true %>
             <%= link_to "Edit", edit_product_path(product), class: "button"%>
             <%= link_to "Retire Product", product_retired_path(product), class: "alert button" %>
