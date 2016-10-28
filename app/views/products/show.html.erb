@@ -50,7 +50,7 @@
       <ul>
         <li><%= link_to "Review", new_product_review_path(params[:id]) %></li>
         <!-- TODO: Will need to update this to go to order path? -->
-        <li><%= link_to "Add to Cart", orders_path %></li>
+        <li><%= link_to "Add to Cart", product_orders_path(params[:id]), method: :post %></li>
       </ul>
     <% end %>
   </section>

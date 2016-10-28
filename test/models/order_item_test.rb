@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class OrderItemTest < ActiveSupport::TestCase
-  test "create a new product with valid data" do
+  test "create a new order item with valid data" do
     assert order_items(:one).valid?
     assert order_items(:two_true).valid?
   end
@@ -33,4 +33,68 @@ class OrderItemTest < ActiveSupport::TestCase
     assert_not order_item.valid?
     assert_not order_item2.valid?
   end
+
+  test "the method create_order_item should create a new OrderItem instance" do
+    product = products(:one)
+    order = orders(:one)
+    #can we compare two different objects using assert_equal?
+    assert_difference('OrderItem.count', 1) do
+      OrderItem.create_order_item(product, order)
+    end
+  end
+
+  #_____________________________________________________#
+  # @todo write the code to pass these tests
+  #_____________________________________________________#
+  # these tests need access to order items that are pending and access to orders and products that are not connected!!!!
+
+  test "the method create_order_item should not create a new order item if there is already one with current order and product" do
+    product = products(:one)
+    order = orders(:one)
+
+    assert_difference('OrderItem.count', 1) do
+      OrderItem.create_order_item(product, order)
+    end
+  end
+
+  # test "the method update_order_item should update the quantity of an order item by one when the product is added to the order a second time" do
+  #   product = products(:one)
+  #   order = orders(:one)
+  #   order_item = order_items(:one)
+  #   order_item[:quantity] = 20
+  #
+  #   assert_equal(order_item[:quantity], 21) do
+  #     order_item.update_order_item(product, order)
+  #   end
+  #
+  # end
+  #
+  # test "the method update_order_item should not update an order item if the order[:status] is 'paid'" do
+  #   order = orders(:one)
+  #   order[:status] = "paid"
+  #   product = products(:three)
+  #   order_item = OrderItem.update_order_item(product, order)
+  #   assert_not order_item.valid?
+  #
+  # end
+  #
+  # test "the method update_order_item should not update an order item if the order[:status] is 'completed'" do
+  #   product = products(:one)
+  #   order = orders(:one)
+  #   order[:status] = "completed"
+  #   order_item = OrderItem.update_order_item(product, order)
+  #   assert_not order_item.valid?
+  #
+  # end
+  #
+  # test "the method update_order_item should not update an order item if the order[:status] is 'cancelled'" do
+  #   product = products(:one)
+  #   order = orders(:one)
+  #   order[:status] = "cancelled"
+  #   order_item = OrderItem.update_order_item(product, order)
+  #   assert_not order_item.valid?
+  #
+  # end
+
+
 end

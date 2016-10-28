@@ -30,8 +30,8 @@
             <% if @current_order_id.nil? %>
               <%= image_tag "basketcart.png", class: "basketcart-img" %>
             <% else %>
-              <%= link_to "Your Basket", order_path(@current_order_id) %>
-              <%# link_to image_tag("basketcart.png"), order_path(@current_order_id), class: "basketcart-img" %>
+              <%# link_to "Your Basket", order_path(@current_order_id) %>
+              <%= link_to image_tag("basketcart.png"), order_path(@current_order_id), class: "basketcart-img" %>
             <% end %>
           </li>
         </ul>

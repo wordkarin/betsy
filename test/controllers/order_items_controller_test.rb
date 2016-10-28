@@ -3,7 +3,8 @@ require 'test_helper'
 class OrderItemsControllerTest < ActionController::TestCase
 # CREATE!!!
   # test "should create a new OrderItem" do
-  #   post_params = {order_item: {product_id: products(:three).id, order_id: orders(:three_pending).id, quantity: 1 }}
+  #   post_params = {product: products(:three), order: orders(:three_pending)}
+  #   puts "#{post_params} >>>>>>>>>"
   #   post :create, post_params
   #   assert_response :redirect
   # end
