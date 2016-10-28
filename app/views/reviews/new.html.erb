@@ -14,7 +14,7 @@
   <% end %>
 
     <%= form_for @review, class: "", html: {class: 'form'}, url: product_reviews_path, http_method: :post do |f| %>
-    <article class="new-table cream-background">
+    <article class="new-table cream-background padding-bot">
       <section class="change-font">
         <%= f.label :title, 'Title:' %>
         <%= f.text_field :title %>
@@ -25,7 +25,7 @@
         <%= f.label :body %>
         <%= f.text_field :body %>
       </section>
-        <%= f.submit :class => 'product-button' %>
+        <%= f.submit :class => 'button' %>
     </article>
     <% end %>
 </article>

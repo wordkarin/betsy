@@ -61,6 +61,17 @@ header section#category-list article.top-bar-section ul {
   text-align: center;
 }
 
+/*FOOTER*/
+footer div {
+  width: 100%;
+  background-color: #5A6070;
+  color: #ECEBE4;
+}
+
+footer div p {
+  padding: .3%;
+}
+
 /*ALL PAGES*/
 .page-title {
   padding-top: 2%;
