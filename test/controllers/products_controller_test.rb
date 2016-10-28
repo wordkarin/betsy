@@ -53,10 +53,10 @@ class ProductsControllerTest < ActionController::TestCase
 
   end
 
-  test "products#show displays an error page if product does not exist" do
-    skip
-    # TODO
-  end
+  # test "products#show displays an error page if product does not exist" do
+  #   skip
+  #   # TODO
+  # end
 
   test "products#new displays the new form for logged in merchant" do
     #fake a user is logged in.
@@ -162,7 +162,7 @@ class ProductsControllerTest < ActionController::TestCase
     # We should add a test for the redirect in here, but Sky updated the redirect.
   end
 
-  # I can't get this test to work. 
+  # I can't get this test to work.
   # test "if I don't supply a required field get redirected to edit" do
   #   #fake a user logged in.
   #   session[:user_id] = merchants(:one).id
