@@ -61,6 +61,7 @@ ul.bullet-none {
 
 table, th, td {
   border: 1px solid black;
+  font-family: 'Josefin Slab', serif;
 }
 
 /*PRODUCT PAGES*/
@@ -80,6 +81,22 @@ table, th, td {
 .product-image-thumbnail {
   width: 70%;
   padding: 2%;
+}
+
+.product-button {
+  text-align: center;
+  font-family: 'Josefin Slab', serif;
+  padding: 3px;
+  margin-top: 5px;
+  border: solid 1px #5A6070;
+  border-radius: 25%;
+  color: #ECEBE4;
+  background-color: #5E4E5B;
+  display: inline-block;
+}
+
+.category-link {
+  font-family: 'Josefin Slab', serif;
 }
 
 /*CATEGORY PAGES*/
