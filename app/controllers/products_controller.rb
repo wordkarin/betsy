@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
     # This is the individual product page
     @product = Product.find(params[:id])
     @categories = @product.categories
+    @reviews = Review.where(product_id: params[:id])
 
     # If user is not logged in OR user is not the owner of the product, show them the add review/add to cart button. If they are the owner, show them the edit link.
     if @current_user == nil || @current_user.id != @product.merchant_id

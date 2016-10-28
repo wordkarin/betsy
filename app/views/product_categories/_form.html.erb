@@ -10,14 +10,21 @@
 
 <%= form_for @product_category, class: 'add-form', html: {class: 'form'}, url: submit_url,method: http_method do |f| %>
   <section>
-    <% @all_categories.each do | category | %>
-      <%= check_box_tag 'category_ids[]', category.id %>
-      <%= category.name %>
-    <% end %>
+    <ul class="row small-up-3 bullet-none">
+      <% @all_categories.each do | category | %>
+        <li class="column">
+          <span class='add-space'>
+            <%= check_box_tag 'category_ids[]', category.id %>
+            <%= category.name %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+
   </section>
 
   <section>
-    <%= f.submit "Create"%>
+    <%= f.submit "Create", class: "button"%>
   </section>
 
 <% end %>

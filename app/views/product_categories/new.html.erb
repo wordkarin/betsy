@@ -1,9 +1,9 @@
 <article>
   <header>
-    <h1>Add a New Product-Category</h1>
+    <h2 class="page-title padding-top">Select all of the Categories that your Product belongs to:</h2>
   </header>
 </article>
 
-<section class="new-table">
+<section class="new-table cream-background change-font ">
   <%= render partial: "form", locals: { submit_url: product_product_categories_path, http_method: :post } %>
 </section>
