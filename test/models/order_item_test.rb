@@ -49,6 +49,7 @@ class OrderItemTest < ActiveSupport::TestCase
   # these tests need access to order items that are pending and access to orders and products that are not connected!!!!
 
   test "the method create_order_item should not create a new order item if there is already one with current order and product" do
+    # These fixtures are connected in the fixtures
     product = products(:one)
     order = orders(:one)
 
@@ -57,27 +58,34 @@ class OrderItemTest < ActiveSupport::TestCase
     end
   end
 
-  # test "the method update_order_item should update the quantity of an order item by one when the product is added to the order a second time" do
-  #   product = products(:one)
-  #   order = orders(:one)
-  #   order_item = order_items(:one)
-  #   order_item[:quantity] = 20
-  #
-  #   assert_equal(order_item[:quantity], 21) do
-  #     order_item.update_order_item(product, order)
-  #   end
-  #
-  # end
-  #
-  # test "the method update_order_item should not update an order item if the order[:status] is 'paid'" do
-  #   order = orders(:one)
-  #   order[:status] = "paid"
-  #   product = products(:three)
-  #   order_item = OrderItem.update_order_item(product, order)
-  #   assert_not order_item.valid?
-  #
-  # end
-  #
+  test "the method update_order_item should update the quantity of an order item by one when the product is added to the order a second time" do
+    # These fixtures are connected in the fixtures
+    product = products(:one)
+    order = orders(:one)
+    order_item = order_items(:one)
+
+    assert_equal(product.id, order_item.product_id)
+    assert_equal(order.id, order_item.order_id)
+
+    order_item[:quantity] = 20
+    order_item.save
+    model_oi = OrderItem.update_order_item(product, order)
+
+    assert_equal(model_oi, order_item)
+    assert_equal(model_oi.quantity, 21)
+  end
+
+  test "the method update_order_item should not update an order item if the order[:status] is 'paid'" do
+    order = orders(:one)
+    order[:status] = "paid"
+    order.save
+    product = products(:three)
+    order_item = OrderItem.update_order_item(product, order)
+    puts ">>>>>#{order_item.order_id == order.id} @@@@ #{order_item.product_id == product.id}"
+    assert_not order_item.valid?
+
+  end
+
   # test "the method update_order_item should not update an order item if the order[:status] is 'completed'" do
   #   product = products(:one)
   #   order = orders(:one)
