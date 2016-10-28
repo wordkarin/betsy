@@ -8,6 +8,7 @@
       :scope => "email, profile",
       # :prompt => "select_account",
       :image_aspect_ratio => "square",
-      :image_size => 50
+      :image_size => 50,
+      :skip_jwt => true
     }
 end
