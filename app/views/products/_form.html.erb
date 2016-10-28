@@ -9,41 +9,33 @@
 <% end %>
 
 <%= form_for [@merchant, @product], method: http_method do |f| %>
-  <table>
-    <tr>
-      <td>
-        <%= f.label "Product Name" %>
-        <%= f.text_field :name %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= f.label "Product Description" %>
-        <%= f.text_field :description %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= f.label "Photo (URL)" %>
-        <%= f.text_field :photo_url %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= f.label :price %>
-        <%= f.text_field :price %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= f.label "Quantity Available" %>
-        <%= f.text_field :stock_quantity %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= f.submit "Submit" %>
-      </td>
-    </tr>
-  </table>
+  <section>
+    <%= f.label "Product Name" %>
+    <%= f.text_field :name %>
+  </section>
+
+  <section>
+    <%= f.label "Product Description" %>
+    <%= f.text_field :description %>
+  </section>
+
+  <section>
+    <%= f.label "Photo (URL)" %>
+    <%= f.text_field :photo_url %>
+  </section>
+
+  <section>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </section>
+
+  <section>
+    <%= f.label "Quantity Available" %>
+    <%= f.text_field :stock_quantity %>
+  </section>
+
+  <section>
+    <%= f.submit "Submit", class: "button" %>
+  </section>
+
 <% end %>
