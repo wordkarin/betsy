@@ -3,10 +3,10 @@ class OrdersController < ApplicationController
 
 
   def create
-    if session[:order_id] != nil
-      render :update
-      return
-    else
+    # if session[:order_id] != nil
+    #   render :update
+    #   return
+    # else
       @product = Product.find_by(id: params[:product_id].to_i)
       @order = Order.new
       @order.status = "pending"
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
         flash[:notice] = "Sorry, something that wasn't supposed to happen, happened."
         redirect_to product_path(@product.id)
       end
-    end #session
+    # end #session
   end
 
   def show
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
       #SUCCESS
       @product = Product.find(params[:product_id])
       if OrderItem.update_order_item(@product, @order) != false
-        @order.save
+        @order.save ? flash[:notice] = "Your order is saved" : flash[:notice] = "Your order did not save"
       else
         flash[:notice] = "Sorry, this order is not valid"
         redirect_to products_path
@@ -79,6 +79,6 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:name, :email, :mailing_address, :cc_last_4, :cc_expire, :status)
+    params.require(:order).permit(:name, :email, :mailing_address, :cc_last_4, :cc_expire, :status, )
   end
 end
