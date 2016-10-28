@@ -39,11 +39,8 @@
         <td><%= money_format(Product.find(item.product_id).price * item.quantity)%></td>
         <td><%= Product.find(item.product_id).merchant_id%></td>
         <td><%= item.shipping_status %>
-          raise
-          <% if item.shipping_status != "pending" %>
-            <% if @current_user.id == Product.find(item.product_id).merchant_id %>
+          <% if @order.status != "pending" && @current_user.id == Product.find(item.product_id).merchant_id%>
             <p><%= button_to "Ship this Product", order_items_shipped_path(item.id), :method => :patch %><p>
-            <% end %>
           <% end %>
         </td>
       </tr>
