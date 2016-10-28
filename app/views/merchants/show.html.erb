@@ -39,7 +39,11 @@
         <% product.orders.reverse.each do |order| %>
           <section>
             <tr>
-              <td><%=order.purchase_time.strftime("%Y-%m-%d")%></td>
+              <% if order.status != 'pending' %>
+                <td><%=order.purchase_time.strftime("%Y-%m-%d")%></td>
+              <% else %>
+                <td>N/A</td>
+              <% end %>
               <td><%=order.id%></td>
               <td><%=order.name%></td>
               <td><%=order.status%></td>

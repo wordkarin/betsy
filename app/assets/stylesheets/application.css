@@ -8,7 +8,7 @@ header section.top-bar {
   margin-bottom: 2%;
 }
 
-.basketcart-img {
+.basketcart-img, a.basketcart-img {
   height: 25%;
 }
 
@@ -66,6 +66,7 @@ ul.bullet-none {
 
 table, th, td {
   border: 1px solid black;
+  font-family: 'Josefin Slab', serif;
 }
 
 .indent {
@@ -103,8 +104,20 @@ table, th, td {
   padding: 2%;
 }
 
-.product-img-thumbnail {
-  width: 70%;
+.product-button {
+  text-align: center;
+  font-family: 'Josefin Slab', serif;
+  padding: 3px;
+  margin-top: 5px;
+  border: solid 1px #5A6070;
+  border-radius: 25%;
+  color: #ECEBE4;
+  background-color: #5E4E5B;
+  display: inline-block;
+ }
+
+ .category-link {
+  font-family: 'Josefin Slab', serif;
 }
 
 /*CATEGORY PAGES*/
@@ -153,4 +166,9 @@ table, th, td {
 
 .cream-background {
   background-color: #ECEBE4;
+}
+
+/*MERCHANT*/
+.merchant-img {
+padding-top: 3%;
 }
