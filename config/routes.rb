@@ -31,18 +31,15 @@ Rails.application.routes.draw do
   patch 'orders/:id/pay', to: 'orders#pay', as: 'pay_for_order'
 
   # post 'products/:id/orders', to: 'orders#create'
-
-  patch 'orders/:id/completed', to: 'orders#completed', as: 'order_completed'
-  patch 'orders/:id/cancelled', to: 'orders#cancelled', as: 'order_cancelled'
-  patch 'orders/:id/paid', to: 'orders#paid', as: 'order_paid'
+  #
+  # Function completed in the order model
+  # patch 'orders/:id/completed', to: 'orders#completed', as: 'order_completed'
+  # patch 'orders/:id/cancelled', to: 'orders#cancelled', as: 'order_cancelled'
+  # patch 'orders/:id/paid', to: 'orders#paid', as: 'order_paid'
 
 
   # RELATIONSHIP TABLE ROUTES
   resources :order_items, only: [:destroy, :update]
   patch 'order_items/:id/shipped', to: 'order_items#shipped', as: 'order_items_shipped'
-  patch 'orders/:id/status', to: 'orders#status', as: 'order_status_update'
-
-
-
 
 end
