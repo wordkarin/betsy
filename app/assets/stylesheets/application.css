@@ -8,6 +8,10 @@ header section.top-bar {
   margin-bottom: 2%;
 }
 
+.basketcart-img, a.basketcart-img {
+  height: 25%;
+}
+
 section.top-bar nav.top-bar-section {
   font-family: 'Josefin Slab', serif;
 }
@@ -49,6 +53,7 @@ header section#category-list article.top-bar-section ul {
 /*ALL PAGES*/
 .page-title {
   padding-top: 2%;
+  padding-bottom: 1%;
   text-align: center;
   font-family: 'Josefin Slab', serif;
   color: #5E4E5B;
@@ -61,6 +66,23 @@ ul.bullet-none {
 
 table, th, td {
   border: 1px solid black;
+  font-family: 'Josefin Slab', serif;
+}
+
+.indent {
+  margin-left: 10%;
+}
+
+.change-font {
+  font-family: 'Josefin Slab', serif;
+}
+
+.add-padding-top {
+  padding-top: 1%;
+}
+
+.underline {
+  border-bottom: dotted black 1px;
 }
 
 /*PRODUCT PAGES*/
@@ -80,6 +102,22 @@ table, th, td {
 .product-image-thumbnail {
   width: 70%;
   padding: 2%;
+}
+
+.product-button {
+  text-align: center;
+  font-family: 'Josefin Slab', serif;
+  padding: 3px;
+  margin-top: 5px;
+  border: solid 1px #5A6070;
+  border-radius: 25%;
+  color: #ECEBE4;
+  background-color: #5E4E5B;
+  display: inline-block;
+ }
+
+ .category-link {
+  font-family: 'Josefin Slab', serif;
 }
 
 /*CATEGORY PAGES*/
@@ -107,36 +145,30 @@ table, th, td {
 
 /*TABLES*/
 .new-table {
-  padding: 2% 3% 0% 3%;
+  padding: 2% 15% 0% 15%;
 }
 
 .product-new-table {
   padding: 2% 15% 0% 15%;
+  background-color: #ECEBE4;
 }
 
 .form-text {
   font-family: 'Josefin Slab', serif;
-  padding-left: 3%;
+  padding-left: 15%;
   padding-top: 2%;
 }
 
-#category-list {
+#category-options {
   font-family: 'Josefin Slab', serif;
-  padding-left: 3%;
+  padding-left: 10%;
 }
 
-.indent {
-  margin-left: 3%;
+.cream-background {
+  background-color: #ECEBE4;
 }
 
-.change-font {
-  font-family: 'Josefin Slab', serif;
-}
-
-.add-padding-top {
-  padding-top: 2%;
-}
-
-.underline {
-  border-bottom: dotted black 1px;
+/*MERCHANT*/
+.merchant-img {
+padding-top: 3%;
 }

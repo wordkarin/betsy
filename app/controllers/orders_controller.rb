@@ -3,25 +3,28 @@ class OrdersController < ApplicationController
 
 
   def create
-    # if @product.stock_quantity > 0 else render product_path(@product.id)
-    @product = Product.find_by(id: params[:product_id].to_i)
-    #if @product == nil
-    @order = @product.orders.new(order_params(params[:order]))
-    @order.status = "pending"
-    if @order.save
-      # When a user creates a new order, we want to save it in their session until the pay for it, so that they can look at it (and check out!).
-      session[:order_id] = @order.id
-      redirect_to order_items_path
+    if session[:order_id] != nil
+      render :update
+      return
     else
-      render product_path(@product.id)
-    end
+      @product = Product.find_by(id: params[:product_id].to_i)
+      @order = Order.new
+      @order.status = "pending"
+      if @order.save
+        OrderItem.create_order_item(@product, @order)
+        session[:order_id] = @order.id
+        redirect_to product_path(@product) # might redirect to cart
+      else
+        flash[:notice] = "Sorry, something that wasn't supposed to happen, happened."
+        redirect_to product_path(@product.id)
+      end
+    end #session
   end
 
   def show
     current_user
     @order = Order.find(params[:id])
     @order_items = OrderItem.where(order_id: @order.id)
-
     @revenue = {}
     @total_revenue = 0
     @order_items.each do |item|
@@ -31,7 +34,6 @@ class OrdersController < ApplicationController
       @item_revenue = (@price * @quantity)
       @total_revenue = @item_revenue + @total_revenue
     end
-
   end
 
 
@@ -40,10 +42,31 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def update
+    order_id = @current_order_id
+    @order = Order.find(order_id)
+    if @order.status == "pending"
+      #SUCCESS
+      @product = Product.find(params[:product_id])
+      if OrderItem.update_order_item(@product, @order) != false
+        @order.save
+      else
+        flash[:notice] = "Sorry, this order is not valid"
+        redirect_to products_path
+        return
+      end
+      redirect_to order_path(@order)
+    else #(not pending)
+      flash[:notice] = "Sorry, this order is not valid"
+      redirect_to products_path
+    end #pending
+  end
+
   def pay
     @order = Order.find(params[:id])
     if @order.update(order_params)
       # delete your order_id out of session so that you can make another order!
+      @order.purchase_time = DateTime.now
       session.delete(:order_id)
 
       flash[:notice] = "Thank you for placing your order with BasketCase. Please come again soon!"
@@ -70,6 +93,5 @@ class OrdersController < ApplicationController
   private
   def order_params
     params.require(:order).permit(:name, :email, :mailing_address, :cc_last_4, :cc_expire, :status)
-    # params.permit!
   end
 end
