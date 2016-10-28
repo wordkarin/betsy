@@ -9,6 +9,19 @@ class Order < ActiveRecord::Base
 
   validates :status, :presence => true, inclusion: { in: %w(pending paid completed cancelled) }
 
+  def self.check_status(order)
+    order.order_items.each do |item|
+      if item.shipping_status == false
+        order.status = "paid"
+        order.save
+        break
+      else
+        order.status = "completed"
+        order.save
+      end
+    end
+  end
+
 private
   def card_adjust(cc_last_4)
 

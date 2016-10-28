@@ -10,7 +10,9 @@ class OrderItemsController < ApplicationController
     this_item = OrderItem.find(id)
     this_item.shipping_status = true
     this_item.save
-    redirect_to order_status_update_path(this_item.order_id)
+    order = Order.find(this_item.order_id)
+    Order.check_status(order)
+    redirect_to order_path(order.id)
   end
 
 # method creates one order item (adds one of product item to order)

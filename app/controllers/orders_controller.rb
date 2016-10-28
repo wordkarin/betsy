@@ -77,20 +77,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def order_status
-    order = Order.find(params[:id])
-    @order_item = OrderItem.find_by(order_id: order.id)
-    @order_item.each do |item|
-      if item.shipping_status == false
-        break
-      else
-        order.status = "completed"
-        order.save
-      end
-    end
-    redirect_to order_path(params[:id])
-  end
-
   private
   def order_params
     params.require(:order).permit(:name, :email, :mailing_address, :cc_last_4, :cc_expire, :status, )
