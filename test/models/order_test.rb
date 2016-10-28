@@ -28,6 +28,10 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal(order.products.length, 2)
   end
 
+  # test "The open? method will return true if an order is 'pending' and 'false' if it is 'paid', 'cancelled', or 'complete'" do
+  # end
+
+
   # REMOVED BECAUSE NO LONGER VALIDATING ORDER_ITEM
   # test "order cannot be created without an order item" do
   #   test_order = orders(:one)

@@ -1,32 +1,38 @@
 class OrderItemsController < ApplicationController
+
   before_action :current_order
   # def create
   #
   # end
-
-
+# method creates one order item (adds one of product item to order)
   def create
-    @order = Order.find_by(id: params[:order_id].to_i)
-    @order_item = @order.order_items.new #here need params
-    # @order_item.quantity += 1
-    if @order_item.save
-      # SUCCESS # to order page?
-      # redirect_to product_path(SOME PRODUCT ID) #not sure how it finds it
-    else
-      # render # same but with flash message?
-      # NO SUCCESS
-    end
 
-
-    # if Order.where(id: params[:id]).length == 0
-    #   new_order = Order.new # with those params
-    #   new_order.save
-    # end
-
-    # @todo RETURN WITH PARAMS
-
+    # # @order = Order.find_by(id: params[:order_id].to_i)
+    # @order_id = params[:order_id]
+    # @product_id = params[:product_id]
+    # # @product = params[:product]
+    # params = {order_id: @order_id product_id: @product_id, quantity: 1}
     # raise
-    # redirect_to product_path(params[:id])
+    # @order_item = @product.order_items.new(order_item_params(params))
+    # if @order_item.save
+    #   # SUCCESS remove item from product stock
+    #   redirect_to product_path(@product)
+    # else
+    #   # render # same but with flash message?
+    #   # if we removed item from product stock then replace it
+    #   # NO SUCCESS
+    # end
+    #
+    #
+    # # if Order.where(id: params[:id]).length == 0
+    # #   new_order = Order.new # with those params
+    # #   new_order.save
+    # # end
+    #
+    # # @todo RETURN WITH PARAMS
+    #
+    # # raise
+    # # redirect_to product_path(params[:id])
   end
 #   #
 #   # # Talk about the routes

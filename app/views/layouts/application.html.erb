@@ -21,24 +21,24 @@
         <ul class="menu top-bar-right">
           <li>
             <% if session[:user_id] == nil %>
-              <%= link_to "Log In", "/auth/google" %>
+              <%= link_to "Log In/Sign Up", "/auth/google" %>
             <% else %>
               <%= link_to "Log Out", sessions_path, method: :delete %>
             <% end %>
           </li>
-          <li>Sign Up</li>
           <li>
             <% if @current_order_id.nil? %>
-              Your Basket
+              <%= image_tag "basketcart.png", class: "basketcart-img" %>
             <% else %>
-              <%= link_to "Your Basket", order_path(@current_order_id) %>
+              <%# link_to "Your Basket", order_path(@current_order_id) %>
+              <%= link_to image_tag("basketcart.png"), order_path(@current_order_id), class: "basketcart-img" %>
             <% end %>
           </li>
         </ul>
       </nav>
     </section>
 
-    <article class= "row">
+    <article class= "row cream-background">
       <h1 class="small-12 center columns" id="header-title"><%= link_to "BasketCase", root_path%></h1>
       <h4 class="small-12 center columns" id="header-subtitle"> - - the go-to site for all things picnic! - -</h4>
     </article>
