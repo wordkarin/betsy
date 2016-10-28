@@ -56,7 +56,7 @@
           <%= link_to "Reviews", product_reviews_path(params[:id]), class:"product-button"  %>
           <%= link_to "Add a Review", new_product_review_path(params[:id]), class:"product-button" %></li>
           <!-- TODO: Will need to update this to go to order path? -->
-          <%= link_to "Add to Cart", products_path, class:"product-button"  %></li>
+          <%= link_to "Add to Cart", product_orders_path(params[:id]), method: :post, class:"product-button"  %></li>
         <% end %>
       </article>
     </section>
