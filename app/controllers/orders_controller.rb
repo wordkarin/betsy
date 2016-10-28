@@ -5,12 +5,14 @@ class OrdersController < ApplicationController
   def create
     if session[:order_id] != nil
       render :update
+      return
     else
       @product = Product.find_by(id: params[:product_id].to_i)
-      @order = @product.orders.new
+      @order = Order.new
       @order.status = "pending"
       if @order.save
         OrderItem.create_order_item(@product, @order)
+        session[:order_id] = @order.id
         redirect_to product_path(@product) # might redirect to cart
       else
         flash[:notice] = "Sorry, something that wasn't supposed to happen, happened."
@@ -64,6 +66,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     if @order.update(order_params)
       # delete your order_id out of session so that you can make another order!
+      @order.purchase_time = DateTime.now
       session.delete(:order_id)
 
       flash[:notice] = "Thank you for placing your order with BasketCase. Please come again soon!"
