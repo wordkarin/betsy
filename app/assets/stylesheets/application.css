@@ -82,13 +82,27 @@ table, th, td {
   padding: 2%;
 }
 
-
-
 /*CATEGORY PAGES*/
 .category-img {
   display: block;
   width: 50%;
   margin: auto;
+  padding-bottom: 2%
+}
+.category-img-thumbnail {
+  display: block;
+  padding: 2%
+}
+
+.underline-category {
+  border-bottom: solid 1px #110D0F;
+  margin-bottom: 2%;
+}
+
+.product-categories-link {
+  text-align: center;
+  font-family: 'Josefin Slab', serif;
+  color: #5E4E5B;
 }
 
 /*TABLES*/
