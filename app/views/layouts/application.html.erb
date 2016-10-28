@@ -26,13 +26,13 @@
               <%= link_to "Log Out", sessions_path, method: :delete %>
             <% end %>
           </li>
-          <li>
+          <li class="img-cart">
             <% if @current_order_id.nil? %>
-              Your Basket
-              <%# image_tag "basketcart.png", class: "basketcart-img" %>
+              <!-- Your Basket -->
+              <% image_tag "basketcart.png", class: "basketcart-img" %>
             <% else %>
-              <%= link_to "Your Basket", order_path(@current_order_id) %>
-              <%# link_to image_tag("basketcart.png"), order_path(@current_order_id), class: "basketcart-img" %>
+              <%# link_to "Your Basket", order_path(@current_order_id) %>
+              <%= link_to(image_tag("basketcart.png", :alt => "cart image", :class=>"basketcart-img"), "order_path(@current_order_id)") %>
             <% end %>
           </li>
         </ul>

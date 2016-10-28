@@ -15,6 +15,7 @@
         <% end %>
     </table>
   </section>
-
-  <%= link_to "Add a Review", new_product_review_path(params[:product_id]), class: "product-button" %>
+  <section class="padding-bot">
+    <%= link_to "Add a Review", new_product_review_path(params[:product_id]), class: "product-button" %>
+  </section>
 </article>
