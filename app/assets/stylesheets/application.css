@@ -158,6 +158,10 @@ table, th, td {
   color: #5E4E5B;
 }
 
+.merchant-img-thumbnail {
+  width: 30%;
+}
+
 /*TABLES*/
 .new-table {
   padding: 2% 15% 0% 15%;
