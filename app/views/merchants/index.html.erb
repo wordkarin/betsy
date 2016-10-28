@@ -1,13 +1,19 @@
 <article>
   <header>
-    <h1 class="page-title">Here are all the merchants listed</h1>
+    <h1 class="page-title">All Mechants</h1>
   </header>
 </article>
 
-<article class="">
+<ul class="row small-up-4 bullet-none indent">
   <% @merchants.each do |merchant| %>
-  <section>
-    <%= link_to "#{merchant.name}", merchant_path(merchant) %>
-  </section>
+    <li class="column">
+      <%= link_to "#{merchant.name}", merchant_path(merchant) %>
+    </li>
   <% end %>
-</article>
+</ul>
+
+<ul class="row small-up-12">
+  <li class="column">
+    <%= image_tag "merchant-strawberries.jpg", class: "merchant-img" %>
+  </li>
+</ul>

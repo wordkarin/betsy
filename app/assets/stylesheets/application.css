@@ -8,8 +8,8 @@ header section.top-bar {
   margin-bottom: 2%;
 }
 
-.basketcart-img {
-  height: 25%;
+.basketcart-img, a .basketcart-img {
+  height: 5%;
 }
 
 section.top-bar nav.top-bar-section {
@@ -153,4 +153,9 @@ table, th, td {
 
 .cream-background {
   background-color: #ECEBE4;
+}
+
+/*MERCHANT*/
+.merchant-img {
+padding-top: 3%;
 }
