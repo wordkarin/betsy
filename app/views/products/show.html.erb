@@ -8,13 +8,27 @@
   <h1 class="page-title">
     <%= @product.name %>
   </h1>
-  <ul>
+  <ul class = "bullet-none category-link">
     <% @categories.each do |category| %>
     <li><%= link_to category.name, category_path(category.id)%></li>
     <% end %>
   </ul>
   <%= image_tag(@product.photo_url, class: "product-img") %>
 </header>
+
+<section>
+  <% if @user_page %>
+    <ul class = "bullet-none">
+      <li><%= link_to "Edit", edit_product_path(params[:id]), class:"product-button" %></li>
+    </ul>
+  <% else %>
+    <ul class = "bullet-none">
+      <li><%= link_to "Review", new_product_review_path(params[:id]), class:"product-button"  %></li>
+      <!-- TODO: Will need to update this to go to order path? -->
+      <li><%= link_to "Add to Cart", products_path, class:"product-button"  %></li>
+    </ul>
+  <% end %>
+</section>
 
 <article>
   <section>
@@ -40,18 +54,5 @@
         <td><%= @product.description %></td>
       </tr>
     </table>
-  </section>
-  <section>
-    <% if @user_page %>
-      <ul>
-        <li><%= link_to "Edit", edit_product_path(params[:id]) %></li>
-      </ul>
-    <% else %>
-      <ul>
-        <li><%= link_to "Review", new_product_review_path(params[:id]) %></li>
-        <!-- TODO: Will need to update this to go to order path? -->
-        <li><%= link_to "Add to Cart", product_orders_path(params[:id]), method: :post %></li>
-      </ul>
-    <% end %>
   </section>
 </article>
