@@ -55,6 +55,11 @@ header section#category-list article.top-bar-section ul {
   color: #5E4E5B;
 }
 
+ul.bullet-none {
+  list-style: none;
+}
+
+
 table, th, td {
   border: 1px solid black;
 }
@@ -80,6 +85,18 @@ table, th, td {
   display: block;
   width: 50%;
   margin: auto;
+  padding: auto;
+}
+
+.product-link {
+  text-align: center;
+  font-family: 'Josefin Slab', serif;
+  color: #5E4E5B;
+}
+
+.product-image-thumbnail {
+  width: 70%;
+  padding: 2%;
 }
 
 .product-img-thumbnail {
@@ -91,6 +108,22 @@ table, th, td {
   display: block;
   width: 50%;
   margin: auto;
+  padding-bottom: 2%
+}
+.category-img-thumbnail {
+  display: block;
+  padding: 2%
+}
+
+.underline-category {
+  border-bottom: solid 1px #110D0F;
+  margin-bottom: 2%;
+}
+
+.product-categories-link {
+  text-align: center;
+  font-family: 'Josefin Slab', serif;
+  color: #5E4E5B;
 }
 
 /*TABLES*/
