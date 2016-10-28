@@ -4,7 +4,6 @@ class OrderItemsController < ApplicationController
   # def create
   #
   # end
-<<<<<<< HEAD
 
   def shipped
     id = params[:id]
@@ -14,12 +13,7 @@ class OrderItemsController < ApplicationController
     redirect_to order_status_update_path(this_item.order_id)
   end
 
-
-
-
-=======
 # method creates one order item (adds one of product item to order)
->>>>>>> master
   def create
 
     # # @order = Order.find_by(id: params[:order_id].to_i)

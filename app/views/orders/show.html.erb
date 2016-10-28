@@ -21,6 +21,7 @@
 <section>
   <table class="table">
     <h3>Order Information:</h3>
+    <h4>Order Status: <%=@order.status%></h4>
     <tr>
       <th>Product Item</th>
       <th>Quantity</th>
@@ -37,15 +38,10 @@
         <td><%= money_format(Product.find(item.product_id).price)%></td>
         <td><%= money_format(Product.find(item.product_id).price * item.quantity)%></td>
         <td><%= Product.find(item.product_id).merchant_id%></td>
-        <td>
-          <% if @current_user == Product.find(item.product_id).merchant_id %>
-            <% if item.shipping_status == false %>
-              <p><%= button_to "Ship this Product", order_items_shipped(item.id) %><p>
-            <% else %>
-              <p><% item.shipping_status %></p>
-            <% end %>
-            <% else %>
-              <p><% item.shipping_status %></p>
+        <td><%= item.shipping_status %>
+          <% if @current_user.id == Product.find(item.product_id).merchant_id %>
+
+            <p><%= button_to "Ship this Product", order_items_shipped_path(item.id), :method => :patch %><p>
           <% end %>
         </td>
       </tr>

@@ -36,7 +36,6 @@ class MerchantsController < ApplicationController
     else
       @user_page = true
     end
-
   end
 
 end
