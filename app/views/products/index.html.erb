@@ -1,22 +1,21 @@
 <article>
   <header>
-    <h1 class="page-title">
+    <h2 class="page-title">
       All the Products
       <% if @merchant %>
         for <%= @merchant.name %>
       <% end %>
-    </h1>
+    </h2>
   </header>
 
   <section>
-    <table>
-      <% @products.each do |product| %>
-        <tr>
-          <td>
-            <%= link_to "#{product.name}", product_path(product) %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
+    <ul class="row small-up-3 bullet-none">
+    <% @products.each do |product| %>
+        <li class="column">
+            <p><%= image_tag(product.photo_url, class:"product-img-thumbnail") %></p>
+            <p class: "product-link"><%= link_to "#{product.name}", product_path(product), class: "product-link " %></p>
+        </li>
+    <% end %>
+  </ul>
   </section>
 </article>
