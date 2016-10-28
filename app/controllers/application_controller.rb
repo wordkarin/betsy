@@ -10,6 +10,7 @@ private
     rescue ActiveRecord::RecordNotFound
       @current_user = nil
     end
+    # @current_user = Merchant.find(5)
   end
 
   def require_login

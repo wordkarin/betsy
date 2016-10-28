@@ -106,6 +106,7 @@ class OrdersControllerTest < ActionController::TestCase
 #
 
 test "should get show" do
+  puts "orders(one) #{orders(:one).id}"
   get :show, id: orders(:one).id
   assert_response :success
 end

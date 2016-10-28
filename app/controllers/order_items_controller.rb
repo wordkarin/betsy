@@ -4,6 +4,17 @@ class OrderItemsController < ApplicationController
   # def create
   #
   # end
+
+  def shipped
+    id = params[:id]
+    this_item = OrderItem.find(id)
+    this_item.shipping_status = true
+    this_item.save
+    order = Order.find(this_item.order_id)
+    Order.check_status(order)
+    redirect_to order_path(order.id)
+  end
+
 # method creates one order item (adds one of product item to order)
   def create
 
