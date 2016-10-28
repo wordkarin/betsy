@@ -1,13 +1,13 @@
-<article>
+<article class="cream-background">
   <header>
-    <h1 class="page-title">Product Categories</h1>
+    <h2 class="page-title">Product Categories</h2>
   </header>
 
   <ul class="row small-up-2 bullet-none">
     <% @all_categories.each do | category | %>
       <li class="column">
-        <p><%= image_tag(category.photo_url, class:"category-img-thumbnail")%></p>
-        <p><%= link_to category.name, category_path(category.id), class: "product-categories-link" %></p>
+        <p><%= link_to(image_tag(category.photo_url, class:"category-img-thumbnail"), category_path(category.id))%></p>
+        <p><%= link_to category.name, category_path(category.id), class: "product-categories-link increase-font2" %></p>
       </li>
     <% end %>
   </ul>

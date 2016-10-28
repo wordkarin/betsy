@@ -14,24 +14,18 @@
   <% end %>
 
     <%= form_for @review, class: "", html: {class: 'form'}, url: product_reviews_path, http_method: :post do |f| %>
-    <section>
-      <%= f.label :title, 'Title:' %>
-      <%= f.text_field :title %>
-    </section>
+    <article class="new-table cream-background">
+      <section class="change-font">
+        <%= f.label :title, 'Title:' %>
+        <%= f.text_field :title %>
 
-    <section>
-      <%= f.label :rating, 'Rating:(1-5)' %>
-      <%= f.text_field :rating %>
-    </section>
+        <%= f.label :rating, 'Rating:(1-5)' %>
+        <%= f.text_field :rating %>
 
-    <section>
-      <%= f.label :body %>
-      <%= f.text_field :body %>
-    </section>
-
-    <section>
-      <%= f.submit :class => 'button' %>
-    </section>
-
+        <%= f.label :body %>
+        <%= f.text_field :body %>
+      </section>
+        <%= f.submit :class => 'product-button' %>
+    </article>
     <% end %>
-</article> 
+</article>
