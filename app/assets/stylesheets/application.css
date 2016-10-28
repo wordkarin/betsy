@@ -1,6 +1,6 @@
 @import url('foundation.css');
 @import url('https://fonts.googleapis.com/css?family=Josefin+Slab');
-/*@import url('https://fonts.googleapis.com/css?family=Cormorant+SC|Forum|Gruppo|Josefin+Slab|Kameron|Kranky|Nixie+One');*/
+
 
 /*HEADER*/
 header section.top-bar {
@@ -9,7 +9,7 @@ header section.top-bar {
 }
 
 .basketcart-img {
-  height: 25%;
+  height: 30%;
 }
 
 section.top-bar nav.top-bar-section {
@@ -21,6 +21,15 @@ ul.menu.top-bar-left, ul.menu.top-bar-right {
   font-family: 'Josefin Slab', serif;
   color: #ECEBE4;
   padding: 0 1% 0 1%;
+}
+
+ul.menu.top-bar-right li a{
+  display: inline;
+  text-align: right;
+}
+
+.increase-font2 {
+  font-size: 150%
 }
 
 header article h1#header-title a {
@@ -40,10 +49,12 @@ header article h1#header-title a:hover {
 }
 
 header section#category-list article.top-bar-section ul {
-  margin-top: 2%;
   border-top: #5A6070 solid 1px;
   border-bottom: #5A6070 solid 1px;
+}
 
+.increase-space {
+  padding-bottom: 2%;
 }
 
 .center {
@@ -65,11 +76,16 @@ ul.bullet-none {
 
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid darkgrey;
+  font-family: 'Josefin Slab', serif;
 }
 
 .indent {
   margin-left: 10%;
+}
+
+.add-space {
+  padding-right: 2%;
 }
 
 .change-font {
@@ -86,9 +102,9 @@ table, th, td {
 
 /*PRODUCT PAGES*/
 .product-img {
-  display: block;
-  width: 50%;
-  margin: auto;
+  /*display: block;*/
+  width: 100%;
+  /*margin: auto;*/
   padding: auto;
 }
 
@@ -103,8 +119,20 @@ table, th, td {
   padding: 2%;
 }
 
-.product-img-thumbnail {
-  width: 70%;
+.product-button {
+  text-align: center;
+  font-family: 'Josefin Slab', serif;
+  padding: 3px;
+  margin-top: 5px;
+  border: solid 1px #5A6070;
+  border-radius: 25%;
+  color: #ECEBE4;
+  background-color: #5E4E5B;
+  display: inline-block;
+ }
+
+ .category-link {
+  font-family: 'Josefin Slab', serif;
 }
 
 /*CATEGORY PAGES*/
@@ -153,4 +181,26 @@ table, th, td {
 
 .cream-background {
   background-color: #ECEBE4;
+  margin: 0 2% 0 2%;
+}
+
+.top-add-space {
+  padding-top: 2%;
+}
+
+.increase-font {
+  font-size: 110%
+}
+
+.padding-lf-rt {
+  padding: 0 4% 0 4%;
+}
+
+.padding-bot {
+  padding-bottom: 3%;
+}
+
+/*MERCHANT*/
+.merchant-img {
+padding-top: 3%;
 }

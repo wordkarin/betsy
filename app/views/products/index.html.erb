@@ -1,4 +1,4 @@
-<article>
+<article class="cream-background">
   <header>
     <h2 class="page-title">
       All the Products
@@ -12,8 +12,8 @@
     <ul class="row small-up-3 bullet-none">
     <% @products.each do |product| %>
         <li class="column">
-            <p><%= image_tag(product.photo_url, class:"product-img-thumbnail") %></p>
-            <p class: "product-link"><%= link_to "#{product.name}", product_path(product), class: "product-link " %></p>
+            <p><%= link_to(image_tag(product.photo_url, class:"product-img-thumbnail"), product_path(product)) %></p>
+            <p class: "product-link"><%= link_to "#{product.name}", product_path(product), class: "product-link increase-font2" %></p>
         </li>
     <% end %>
   </ul>

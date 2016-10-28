@@ -1,4 +1,4 @@
-<article>
+<article class="cream-background">
   <header>
     <h1 class="page-title"><%= @category.name %></h1>
   </header>
@@ -10,8 +10,8 @@
   <ul class="row small-up-3 bullet-none">
     <% @products_by_category.each do | product | %>
       <li class="column">
-        <p><%= image_tag(product.photo_url, class:"category-img-thumbnail") %></p>
-        <p><%= link_to product.name, product_path(product.id), class: "product-link" %></p>
+        <p><%= link_to(image_tag(product.photo_url, class:"category-img-thumbnail"), product_path(product.id)) %></p>
+        <p><%= link_to product.name, product_path(product.id), class: "product-link increase-font2" %></p>
       </li>
     <% end %>
   </ul>
