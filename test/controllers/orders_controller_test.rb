@@ -16,12 +16,13 @@ class OrdersControllerTest < ActionController::TestCase
   end
 
   test "A new order will have status 'pending'" do
+    # Fake a user
+    # session[:user_id] = merchants(:one).id
     post_params = {product_id: products(:one).id}
     post :create, post_params
-    order = Order.all.last[:status] = "cancelled"
-    post_params = {product_id: products(:three).id}
-    post :create, post_params
-    assert_equal Order.all.last[:status], "pending"
+    order = Order.last
+
+    assert_equal order.status, "pending"
   end
 
   test "A new order will not be created if product is nil or has no stock" do
@@ -34,26 +35,26 @@ class OrdersControllerTest < ActionController::TestCase
     end
   end
 
-  test "A new order will be created if a other current order is not an open (not yet cancelled or paid) order" do
-    # # @todo discuss how to test/implement this
-    # # The first order
-    # post_params = {product_id: products(:one).id}
-    # post :create, post_params
-    # # Closing the first order
-    # order_cancel = Order.all.last
-    # order_cancel[:status] = "cancelled"
-    #
-    # assert_not order_cancel.status?
-    #
-    # # The second order
-    # post_params = {product_id: products(:one).id}
-    # post :create, post_params
-    #
-    # order_paid = Order.all.last
-    # order_paid[:status] = "paid"
-    #
-    # assert_not order_paid.status?
-  end
+  # test "A new order will be created if a other current order is not an open (not yet cancelled or paid) order" do
+  #   # # @todo discuss how to test/implement this
+  #   # # The first order
+  #   # post_params = {product_id: products(:one).id}
+  #   # post :create, post_params
+  #   # # Closing the first order
+  #   # order_cancel = Order.all.last
+  #   # order_cancel[:status] = "cancelled"
+  #   #
+  #   # assert_not order_cancel.status?
+  #   #
+  #   # # The second order
+  #   # post_params = {product_id: products(:one).id}
+  #   # post :create, post_params
+  #   #
+  #   # order_paid = Order.all.last
+  #   # order_paid[:status] = "paid"
+  #   #
+  #   # assert_not order_paid.status?
+  # end
 
 # UPDATE _____________________ #
 
@@ -76,8 +77,6 @@ class OrdersControllerTest < ActionController::TestCase
     update_post_params = {id: order.id, product_id: prod_id}
     post :update, update_post_params
 
-
-# currently comparing two different objects
     assert_equal OrderItem.last.product_id, prod_id
   end
 
@@ -85,13 +84,23 @@ class OrdersControllerTest < ActionController::TestCase
   #
   # end
 
-  test "create will send back to product#show if stock_quantity is zero" do
-    # is this a model test?
+# WIP @todo This one seems to geniunly pick up a bug, added to TRELLO
+test "it will not create a new order while staying in the same session" do
+  assert_difference('Order.count', 1) do
+  post_params = {product_id: products(:three).id}
+  post :create, post_params
+  end
+puts "before #{Order.count} <<<<<<<"
+  assert_no_difference('Order.count') do
+    post_params = {product_id: products(:three).id}
+    post :create, post_params
+    puts "#{Order.count} <<<<<<<"
+
+    assert_response :redirect
+    # assert_not_nil session[:order_id]
   end
 
-# test "it can not create more than one order per session" do
-#   # @todo COME BACK here!!!!!
-# end
+end
 
 #   test "should update the order when the order_item changes" do
 #   end
