@@ -1,21 +1,21 @@
 <article>
-
   <header>
-    <h1 class="page-title">Here are all the merchants listed</h1>
+    <h2 class="page-title">All Mechants</h2>
   </header>
-  <!-- navbar stuff, really... -->
-  <ul>
-    <li> <%= link_to "home", root_path %></li>
-  </ul>
-  <article class="">
-    <% @merchants.each do |merchant| %>
-    <section>
-      <%= link_to "#{merchant.name}", merchant_path(merchant) %>
-    </section>
-    <% end %>
-  </article>
+</article>
 
-  <p>
-    This is the merchants#index view page
-  </p>
-</article> 
+<article class="cream-background">
+  <ul class="row small-up-2 medium-up-4 bullet-none indent top-add-space change-font increase-font">
+    <% @merchants.each do |merchant| %>
+      <li class="column">
+        <%= link_to "#{merchant.name}", merchant_path(merchant) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <ul class="row small-up-12">
+    <li class="column">
+      <%= image_tag "merchant-strawberries.jpg", class: "merchant-img" %>
+    </li>
+  </ul>
+</article>
