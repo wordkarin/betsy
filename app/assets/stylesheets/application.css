@@ -8,6 +8,10 @@ header section.top-bar {
   margin-bottom: 2%;
 }
 
+.basketcart-img {
+  height: 25%;
+}
+
 section.top-bar nav.top-bar-section {
   font-family: 'Josefin Slab', serif;
 }

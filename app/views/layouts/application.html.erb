@@ -21,17 +21,17 @@
         <ul class="menu top-bar-right">
           <li>
             <% if session[:user_id] == nil %>
-              <%= link_to "Log In", "/auth/google" %>
+              <%= link_to "Log In/Sign Up", "/auth/google" %>
             <% else %>
               <%= link_to "Log Out", sessions_path, method: :delete %>
             <% end %>
           </li>
-          <li>Sign Up</li>
           <li>
             <% if @current_order_id.nil? %>
-              Your Basket
+              <%= image_tag "basketcart.png", class: "basketcart-img" %>
             <% else %>
-              <%= link_to "Your Basket", order_path(@current_order_id) %>
+              <%# link_to "Your Basket", order_path(@current_order_id) %>
+              <%= link_to image_tag("basketcart.png"), order_path(@current_order_id), class: "basketcart-img" %>
             <% end %>
           </li>
         </ul>
