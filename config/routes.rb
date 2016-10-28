@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   # RELATIONSHIP TABLE ROUTES
   resources :order_items, only: [:destroy, :create, :update]
   patch 'order_items/:id/shipped', to: 'order_items#shipped', as: 'order_items_shipped'
+  patch 'orders/:id/status', to: 'orders#status', as: 'order_status_update'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

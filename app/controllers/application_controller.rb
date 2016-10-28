@@ -5,11 +5,12 @@ class ApplicationController < ActionController::Base
 
 private
   def current_user
-    begin
-      @current_user ||= Merchant.find(session[:user_id]) if session[:user_id]
-    rescue ActiveRecord::RecordNotFound
-      @current_user = nil
-    end
+    # begin
+    #   @current_user ||= Merchant.find(session[:user_id]) if session[:user_id]
+    # rescue ActiveRecord::RecordNotFound
+    #   @current_user = nil
+    # end
+    @current_user = Merchant.find(5)
   end
 
   def require_login

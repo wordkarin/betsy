@@ -4,6 +4,16 @@ class OrderItemsController < ApplicationController
   #
   # end
 
+  def shipped
+    id = params[:id]
+    this_item = OrderItem.find(id)
+    this_item.shipping_status = true
+    this_item.save
+    redirect_to order_status_update_path(this_item.order_id)
+  end
+
+
+
 
   def create
     @order = Order.find_by(id: params[:order_id].to_i)
