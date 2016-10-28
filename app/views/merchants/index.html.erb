@@ -1,19 +1,21 @@
 <article>
   <header>
-    <h1 class="page-title">All Mechants</h1>
+    <h2 class="page-title">All Mechants</h2>
   </header>
 </article>
 
-<ul class="row small-up-4 bullet-none indent">
-  <% @merchants.each do |merchant| %>
-    <li class="column">
-      <%= link_to "#{merchant.name}", merchant_path(merchant) %>
-    </li>
-  <% end %>
-</ul>
+<article class="cream-background">
+  <ul class="row small-up-4 bullet-none indent top-add-space change-font increase-font">
+    <% @merchants.each do |merchant| %>
+      <li class="column">
+        <%= link_to "#{merchant.name}", merchant_path(merchant) %>
+      </li>
+    <% end %>
+  </ul>
 
-<ul class="row small-up-12">
-  <li class="column">
-    <%= image_tag "merchant-strawberries.jpg", class: "merchant-img" %>
-  </li>
-</ul>
+  <ul class="row small-up-12">
+    <li class="column">
+      <%= image_tag "merchant-strawberries.jpg", class: "merchant-img" %>
+    </li>
+  </ul>
+</article>

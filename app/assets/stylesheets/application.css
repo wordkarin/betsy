@@ -1,6 +1,6 @@
 @import url('foundation.css');
 @import url('https://fonts.googleapis.com/css?family=Josefin+Slab');
-/*@import url('https://fonts.googleapis.com/css?family=Cormorant+SC|Forum|Gruppo|Josefin+Slab|Kameron|Kranky|Nixie+One');*/
+
 
 /*HEADER*/
 header section.top-bar {
@@ -8,7 +8,7 @@ header section.top-bar {
   margin-bottom: 2%;
 }
 
-.basketcart-img, a.basketcart-img {
+.basketcart-img {
   height: 25%;
 }
 
@@ -40,10 +40,12 @@ header article h1#header-title a:hover {
 }
 
 header section#category-list article.top-bar-section ul {
-  margin-top: 2%;
   border-top: #5A6070 solid 1px;
   border-bottom: #5A6070 solid 1px;
+}
 
+.increase-space {
+  padding-bottom: 2%;
 }
 
 .center {
@@ -170,6 +172,15 @@ table, th, td {
 
 .cream-background {
   background-color: #ECEBE4;
+  margin: 0 2% 0 2%;
+}
+
+.top-add-space {
+  padding-top: 2%;
+}
+
+.increase-font {
+  font-size: 110%
 }
 
 /*MERCHANT*/

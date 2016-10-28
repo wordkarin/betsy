@@ -3,7 +3,7 @@
     <h1 class="page-title"><%= "Reviews for #{@product.name}" %></h1>
   </header>
 
-  <section class="">
+  <section class="new-table cream-background change-font">
     <% @reviews_by_product.each do | review | %>
       <p><%= "#{review.title}" %></p>
       <p><%= "#{review.rating}" %></p>
@@ -11,5 +11,5 @@
     <% end %>
   </section>
 
-  <%= link_to "Add a Review", new_product_review_path(params[:product_id]) %>
+  <%= link_to "Add a Review", new_product_review_path(params[:product_id]), class: "button" %>
 </article>
