@@ -5,9 +5,11 @@
     <h2 id="notice"> <%= flash[:notice] %></h2>
     <% end %>
   </section>
+
   <h1 class="page-title">
     <%= @product.name %>
   </h1>
+  
   <ul class = "bullet-none category-link">
     <% @categories.each do |category| %>
     <li><%= link_to category.name, category_path(category.id)%></li>
@@ -33,7 +35,7 @@
 </section>
 
 <article>
-  <section>
+  <section class="padding-lf-rt">
     <table>
       <tr>
         <td>Price</td>

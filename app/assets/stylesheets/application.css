@@ -67,7 +67,7 @@ ul.bullet-none {
 
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid darkgrey;
   font-family: 'Josefin Slab', serif;
 }
 
@@ -181,6 +181,10 @@ table, th, td {
 
 .increase-font {
   font-size: 110%
+}
+
+.padding-lf-rt {
+  padding: 0 4% 0 4%;
 }
 
 /*MERCHANT*/

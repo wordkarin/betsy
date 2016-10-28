@@ -1,15 +1,20 @@
-<article>
-  <header class="page-title">
-    <h1 class="page-title"><%= "Reviews for #{@product.name}" %></h1>
+<article class="new-table cream-background">
+  <header>
+    <h2 class="page-title change-font"><%= "Reviews for #{@product.name}" %></h2>
   </header>
 
-  <section class="new-table cream-background change-font">
-    <% @reviews_by_product.each do | review | %>
-      <p><%= "#{review.title}" %></p>
-      <p><%= "#{review.rating}" %></p>
-      <p><%= "#{review.body}" %></p>
-    <% end %>
+  <section >
+    <table>
+      <tr>
+        <% @reviews_by_product.each do | review | %>
+          <td>
+            <h6 class="change-font"><strong><%= "#{review.title} (Rating: #{review.rating}):" %></strong></h6>
+            <p><%= "#{review.body}" %></p>
+          </td>
+        </tr>
+        <% end %>
+    </table>
   </section>
 
-  <%= link_to "Add a Review", new_product_review_path(params[:product_id]), class: "button" %>
+  <%= link_to "Add a Review", new_product_review_path(params[:product_id]), class: "product-button" %>
 </article>
