@@ -67,6 +67,7 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       # delete your order_id out of session so that you can make another order!
       @order.purchase_time = DateTime.now
+      @order.save
       session.delete(:order_id)
 
       flash[:notice] = "Thank you for placing your order with BasketCase. Please come again soon!"
@@ -78,6 +79,6 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:name, :email, :mailing_address, :cc_last_4, :cc_expire, :status)
+    params.require(:order).permit(:name, :email, :mailing_address, :cc_last_4, :cc_expire, :status, )
   end
 end
