@@ -65,7 +65,7 @@ class OrderItemTest < ActiveSupport::TestCase
 
     assert_equal(product.id, order_item.product_id)
     assert_equal(order.id, order_item.order_id)
-
+    
     order_item[:quantity] = 20
     order_item.save
     model_oi = OrderItem.update_order_item(product, order)
