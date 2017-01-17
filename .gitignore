@@ -22,3 +22,7 @@
 
 # Ignore the .env file (it's full of secrets!)
 .env
+
+# Ignore Intellij
+*.iml
+.idea

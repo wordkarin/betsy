@@ -13,7 +13,7 @@ private
   end
 
   def require_login
-    if current_user.nil?
+    if @current_user.nil?
       flash[:error] = "Please log in to continue."
       redirect_to root_path
     end
